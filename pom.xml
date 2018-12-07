@@ -21,6 +21,7 @@
 
   <modules>
     <module>salsa-webapp</module>
+    <module>salsa-model</module>
   </modules>
 
   <dependencies>
