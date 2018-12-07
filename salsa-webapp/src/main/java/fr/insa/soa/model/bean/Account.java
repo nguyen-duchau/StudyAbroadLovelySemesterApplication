@@ -11,13 +11,29 @@ import javax.persistence.Id;
 public class Account {
 
 	private @Id @GeneratedValue Long id;
-	private String usename;
+	private String username;
 	private String password;
 
 	public Account() {}
 
 	public Account(String username, String password) {
-		this.usename = username;
+		this.username = username;
+		this.password = password;
+	}
+
+	public String getUsername() {
+		return this.username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
 		this.password = password;
 	}
 }

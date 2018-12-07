@@ -1,6 +1,7 @@
 package fr.insa.soa.controller;
 
 import fr.insa.soa.model.bean.Account;
+import fr.insa.soa.model.exception.AccountNotFoundException;
 import fr.insa.soa.model.repository.AccountRepository;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,13 @@ public class AuthenticationController {
 	@GetMapping("/account")
 	public List<Account> all() {
 		return repository.findAll();
+	}
+
+	@GetMapping("/account/{id}")
+	public Account get(@PathVariable Long id) {
+		return repository.findById(id).orElseThrow(() ->
+			new AccountNotFoundException(id)
+		);
 	}
 
 	@PutMapping("/account")
