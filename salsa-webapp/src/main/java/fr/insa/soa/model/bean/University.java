@@ -1,5 +1,7 @@
 package fr.insa.soa.model.bean;
 
+import fr.insa.soa.model.reject.Course;
+
 import java.util.Set;
 import java.util.HashSet;
 
@@ -48,9 +50,9 @@ public class University {
     *           proposedBy        &gt;       course
     * </pre>
     */
-   private Set<Course> course;
+   private Set<fr.insa.soa.model.reject.Course> course;
    
-   public Set<Course> getCourse() {
+   public Set<fr.insa.soa.model.reject.Course> getCourse() {
       if (this.course == null) {
          this.course = new HashSet<Course>();
       }

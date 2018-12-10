@@ -1,5 +1,7 @@
 package fr.insa.soa.model.bean;
 
+import fr.insa.soa.model.reject.Course;
+
 import java.util.Set;
 import java.util.HashSet;
 
@@ -38,14 +40,14 @@ public class Score {
     *           score        &gt;       class
     * </pre>
     */
-   private Course class;
+   private fr.insa.soa.model.reject.Course course;
    
-   public void setClass_(Course value) {
-      this.class = value;
+   public void setClass_(fr.insa.soa.model.reject.Course value) {
+      this.course = value;
    }
    
    public Course getClass_() {
-      return this.class;
+      return this.course;
    }
    
    /**

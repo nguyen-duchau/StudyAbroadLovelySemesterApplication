@@ -1,5 +1,7 @@
 package fr.insa.soa.model.bean;
 
+import fr.insa.soa.model.reject.Course;
+
 import java.util.Set;
 import java.util.HashSet;
 
@@ -27,13 +29,13 @@ public class Speciality {
     *           speciality        &gt;       class
     * </pre>
     */
-   private Set<Course> class;
+   private Set<fr.insa.soa.model.reject.Course> courses;
    
-   public Set<Course> getClass_() {
-      if (this.class == null) {
-         this.class = new HashSet<Course>();
+   public Set<fr.insa.soa.model.reject.Course> getClass_() {
+      if (this.courses == null) {
+         this.courses = new HashSet<Course>();
       }
-      return this.class;
+      return this.courses;
    }
    
    private String department;
