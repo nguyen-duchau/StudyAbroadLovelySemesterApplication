@@ -1,8 +1,11 @@
 package fr.insa.soa.controller;
 
+import fr.insa.soa.model.bean.Course;
 import fr.insa.soa.model.repository.CourseRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class CourseController {
@@ -13,8 +16,9 @@ public class CourseController {
 		this.courseRepository = courseRepository;
 	}
 
-	@GetMapping("/class")
-	public String hello() {
-		return "hello class";
+	@GetMapping("/courses")
+	public List<Course> hello() {
+		return courseRepository.findAll();
 	}
+
 }

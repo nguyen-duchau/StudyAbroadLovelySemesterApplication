@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+
 public class AuthenticationController {
 
 	private final AccountRepository repository;
@@ -18,7 +19,7 @@ public class AuthenticationController {
 
 	@RequestMapping("/")
 	public String hello() {
-		return "hello world";
+		return "Salsa hello!";
 	}
 
 	@GetMapping("/account")

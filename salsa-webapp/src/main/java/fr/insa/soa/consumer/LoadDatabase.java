@@ -1,6 +1,7 @@
 package fr.insa.soa.consumer;
 
 import fr.insa.soa.model.bean.Account;
+import fr.insa.soa.model.bean.Course;
 import fr.insa.soa.model.repository.AccountRepository;
 import fr.insa.soa.model.repository.CourseRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -13,12 +14,12 @@ import org.springframework.context.annotation.Configuration;
 class LoadDatabase {
 
 	@Bean
-	CommandLineRunner initDatabase(AccountRepository repository, CourseRepository courseRepository) {
+	CommandLineRunner initDatabase(AccountRepository accountRepository, CourseRepository courseRepository) {
 
 		return args -> {
-			log.info("Preloading " + repository.save(new Account("username1", "password")));
-			log.info("Preloading " + repository.save(new Account("username2", "password")));
-			log.info("Test class: " + repository.save(new Account("username2", "password")));
+			log.info("Preloading " + accountRepository.save(new Account("username1", "password")));
+			log.info("Preloading " + accountRepository.save(new Account("username2", "password")));
+			//log.info("Test class: " + courseRepository.save(new Course("IF1457", "Maths")));
 		};
 	}
 }
