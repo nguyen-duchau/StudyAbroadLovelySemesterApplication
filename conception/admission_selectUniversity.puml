@@ -1,0 +1,35 @@
+@startuml
+
+hide footbox
+title Admission : selectUniversity
+actor Student
+participant Platform
+entity AuthenticationService
+entity AdmissionService
+
+Student -> Platform : PUT(student, university)
+activate Platform
+alt try
+
+    Platform -> AuthenticationService : verify(Student student)
+    activate AuthenticationService
+    deactivate AuthenticationService
+
+    Platform -> AdmissionService: candidate(Student student, University university)
+    activate AdmissionService
+    AdmissionService -> Platform: return
+    deactivate AdmissionService
+
+    Platform -> Student : HTTP/200
+
+else catch AccountNotFoundException e
+
+    Platform -> Student : HTTP/404, msg: e
+
+else catch RoleNotCorrespondingException e
+
+    Platform -> Student : HTTP/403, msg: "This function \n is reserved only for student"
+    deactivate Platform
+end
+
+@enduml

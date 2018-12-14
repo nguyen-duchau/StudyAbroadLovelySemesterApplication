@@ -1,0 +1,23 @@
+@startuml
+
+hide footbox
+title Authentication : login
+actor User
+participant Platform
+entity AuthenticationService
+
+User -> Platform: POST(login, password, role)
+activate Platform
+alt try
+
+    Platform -> AuthenticationService: login(AccountSearch login)
+    activate AuthenticationService
+    AuthenticationService -> Platform: return account
+    deactivate AuthenticationService
+
+else catch AccountNotFoundException e
+
+    Platform -> User : HTTP/404, msg: account not exist
+    deactivate Platform
+end
+@enduml

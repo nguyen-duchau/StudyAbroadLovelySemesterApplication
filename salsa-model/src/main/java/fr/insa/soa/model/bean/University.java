@@ -1,11 +1,11 @@
 package fr.insa.soa.model.bean;
 
-import fr.insa.soa.model.reject.Course;
 
-import java.util.Set;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class University {
+
    private String name;
    
    public void setName(String value) {
@@ -50,11 +50,11 @@ public class University {
     *           proposedBy        &gt;       course
     * </pre>
     */
-   private Set<fr.insa.soa.model.reject.Course> course;
+   private List<Course> course;
    
-   public Set<fr.insa.soa.model.reject.Course> getCourse() {
+   public List<Course> getCourse() {
       if (this.course == null) {
-         this.course = new HashSet<Course>();
+         this.course = new ArrayList<Course>();
       }
       return this.course;
    }

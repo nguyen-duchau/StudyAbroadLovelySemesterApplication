@@ -26,10 +26,39 @@ A platform for INSA Toulouse organisation for student's study abroad semester.
 #### IntelliJ Jetbrains
 * Choose **New** > **Project from Version Control** > **Git** > Fill with URL of this Git
 * Wait for loading
-* Include Lombok
+* Install **Lombok** plugin if you have error with `log` somewhere in the code.
 * Click **Edit Configuration** (up ahead) > 
 Click the **+** in the up left > **Spring Boot** > Fill the **Name**, 
 in *Main class* Choose **SalsaWebappApplication.java**
+* Install **PlantUML** if you want to work with conception.
+* Right click on project > **New** > **Edit Files Templates..** > 
+Click on **+** under tab **Files** > Fill in **Name**: `UML Salsa sequence`, fill the following code in template: 
+```
+@startuml
+
+hide footbox
+title Service: functionality
+actor Actor
+participant Platform
+entity Service
+
+Actor -> Platform : POST(params)
+activate Platform
+alt try
+    Platform -> Service : do(Instance instance)
+    activate Service
+    Service -> Platform : return Result result
+    deactivate Service
+    
+    Platform -> User : HTTP/OK, msg: result
+    
+else catch Exception e
+    
+    Platform -> User: HTTP/<code>, msg: e
+    deactivate Plarform
+end
+@enduml
+```
 
 #### Eclipse Spring Tool
 **TODO**
@@ -39,12 +68,14 @@ in *Main class* Choose **SalsaWebappApplication.java**
 * The core application consists of 2 modules: **salsa-webapp** and **salsa-model**
 * The client front-end (GUI) is in sub-project **salsa-front**
 * All other modules are webservice
+* The sequence diagrams (PlantUML) are in **conception**
 
 ### Name convention
 * Consisting of module: Main application's name prefixed with `salsa-*`, web service prefixed with `ws-*`
 * All Controller class suffixed with `*Controller`
 * All service class suffixed with `*Service`
 * So on with `*Repository`, `*Exception`, `*Advice`
+* For plantUML files: `<service name>_<functionality>.puml`
 
 ### Detail organisation
 1. In **salsa-model**: 
@@ -56,12 +87,15 @@ in *Main class* Choose **SalsaWebappApplication.java**
     1. package `fr.insa.soa.advisor` translates `*Exception` from `fr.insa.soa.model.exception` to Http response.
     1. package `fr.insa.soa.consumer` connect with outer (Database, Webservice, ...)
     1. package `fr.insa.soa.controller` has controllers and business logic.
-  
+ 
 ## Model architecture
 **TODO**
 
 ## Network topology
 **TODO**
+* front-end port: 80
+* webapp port : 9000
+* services ports : > 9000
 
 ## Documentaion
 **TODO**
@@ -72,3 +106,31 @@ in *Main class* Choose **SalsaWebappApplication.java**
 * Fatima LALAOI
 * Constantin DOGGYDOG
 * Adrien GONZALEZ
+
+Put the code into template : 
+```$xslt
+@startuml
+
+hide footbox
+title Service: functionality
+actor Actor
+participant Platform
+entity Service
+
+Actor -> Platform : POST(params)
+activate Platform
+alt try
+    Platform -> Service : do(Instance instance)
+    activate Service
+    Service -> Platform : return Result result
+    deactivate Service
+    
+    Platform -> User : HTTP/OK, msg: result
+    
+else catch Exception e
+    
+    Platform -> User: HTTP/<code>, msg: e
+    deactivate Plarform
+end
+@enduml
+```

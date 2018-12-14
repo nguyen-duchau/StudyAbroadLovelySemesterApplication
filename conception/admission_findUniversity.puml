@@ -1,0 +1,32 @@
+@startuml
+
+hide footbox
+title Admission : findUniversity
+actor User
+participant Platform
+entity UniversityService
+
+User -> Platform : GET(user, university_criteria)
+activate Platform
+alt criteria !in attributes
+    Platform -> User : return HTTP/404, msg: "criteria not correct"
+else
+
+    alt try
+
+        Platform -> UniversityService : findAll(UniversityCriteria query)
+        activate UniversityService
+        UniversityService -> Platform : return List<University> universities
+        deactivate UniversityService
+
+        Platform -> User: HTTP/200, msg: universities
+
+    else catch UniversityNotFoundException
+
+        Platform -> User : return HTTP/404, msg: e
+
+        deactivate Platform
+    end
+end
+
+@enduml
