@@ -1,0 +1,21 @@
+@startuml
+
+hide footbox
+title LearningAgreement : publishLearningAgreement
+actor Staff_university_partner
+participant Platform
+entity LearningAgreementService
+
+Staff_university_partner -> Platform : PUT(proposition)
+activate Platform
+
+ref over Staff_university_partner, Platform, LearningAgreementService: authentication_verify
+
+Platform -> LearningAgreementService : create(Proposition proposition)
+activate LearningAgreementService
+LearningAgreementService -> Platform : return Proposition proposition
+deactivate LearningAgreementService
+
+Platform -> Staff_university_partner : HTTP/OK, msg: proposition
+
+@enduml

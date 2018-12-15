@@ -1,0 +1,27 @@
+@startuml
+
+hide footbox
+title Admission : consultUniversity
+actor User
+participant Platform
+entity UniversityService
+
+User -> Platform : GET(id_university)
+activate Platform
+alt try
+
+    Platform -> UniversityService : get(int id_university)
+    activate UniversityService
+    UniversityService -> Platform : return University university
+    deactivate UniversityService
+    Platform -> User : HTTP/200, msg: university
+
+else catch UniversityNotFoundException e
+
+    Platform -> User : HTTP/404, msg: e
+    deactivate Platform
+
+end
+
+
+@enduml

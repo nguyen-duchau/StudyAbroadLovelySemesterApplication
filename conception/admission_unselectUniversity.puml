@@ -6,9 +6,8 @@ actor Student
 participant Platform
 entity AuthenticationService
 entity AdmissionService
-database Repository
 
-Student -> Platform : PUT(student, proposition)
+Student -> Platform : DELETE(student, enrollment)
 activate Platform
 
 ref over Student, Platform, AuthenticationService: authentication_verifyStudent
@@ -16,17 +15,14 @@ ref over Student, Platform, AuthenticationService: authentication_verifyStudent
 
 alt try
 
-    Platform -> Repository: findYearEnrollmentBy(Student student, int year)
-    Repository -> Platform : return YearEnrollment candidate
-
-    Platform -> AdmissionService: candidate(YearEnrollment candidate, Proposition proposition)
+    Platform -> AdmissionService: remove(Enrollment wish)
     activate AdmissionService
-    AdmissionService -> Platform: return Enrollment wish
+    AdmissionService -> Platform: return Enrollment deleted_wish
     deactivate AdmissionService
 
-    Platform -> Student : HTTP/200, msg: wish
+    Platform -> Student : HTTP/200, msg: deleted_wish
 
-else catch EnrollmentCreationException e
+else catch EnrollmentDeletionException e
 
     Platform -> Student : HTTP/404, msg: e
 

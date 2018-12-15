@@ -1,40 +1,33 @@
 @startuml
 
 hide footbox
-title Admission : selectUniversity
+title Admission : studentConfirm
 actor Student
 participant Platform
 entity AuthenticationService
 entity AdmissionService
 database Repository
 
-Student -> Platform : PUT(student, proposition)
+Student -> Platform : POST(student)
 activate Platform
 
 ref over Student, Platform, AuthenticationService: authentication_verifyStudent
-
 
 alt try
 
     Platform -> Repository: findYearEnrollmentBy(Student student, int year)
     Repository -> Platform : return YearEnrollment candidate
 
-    Platform -> AdmissionService: candidate(YearEnrollment candidate, Proposition proposition)
+    Platform -> AdmissionService : confirmCandidate(YearEnrollment candidate)
     activate AdmissionService
-    AdmissionService -> Platform: return Enrollment wish
+    AdmissionService -> Platform : return true
     deactivate AdmissionService
 
-    Platform -> Student : HTTP/200, msg: wish
-
-else catch EnrollmentCreationException e
-
-    Platform -> Student : HTTP/404, msg: e
-
-else catch CandidateViolationException e
-
-    Platform -> Student : HTTP/500, msg: e
+    Platform -> Student : HTTP/200
+    
+else catch CandidateOutOfDeadlineException e
+    
+    Platform -> Student: HTTP/<code>, msg: e
     deactivate Platform
 end
-
-
 @enduml

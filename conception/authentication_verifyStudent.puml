@@ -1,0 +1,27 @@
+@startuml
+
+hide footbox
+title Service: verifyStudent
+actor Student
+participant Platform
+entity AuthenticationService
+
+activate Platform
+alt try
+
+    Platform -> AuthenticationService : verify(Account<Student> student)
+    activate AuthenticationService
+
+    AuthenticationService -> Platform : return Student student
+    deactivate AuthenticationService
+    
+else catch AccountNotFoundException e
+    
+    Platform -> Student: HTTP/404, msg: e
+else catch RoleNotCorrespondingException e
+
+    Platform -> Student: HTTP/403, msg: e
+    deactivate Platform
+
+end
+@enduml

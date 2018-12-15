@@ -130,7 +130,7 @@ alt try
 else catch Exception e
     
     Platform -> User: HTTP/<code>, msg: e
-    deactivate Plarform
+    deactivate Platform
 end
 @enduml
 ```
