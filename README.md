@@ -95,6 +95,7 @@ end
 **TODO**
 * front-end port: 80
 * webapp port : 9000
+* ws-authentication port: 9001
 * services ports : > 9000
 
 ## Documentaion

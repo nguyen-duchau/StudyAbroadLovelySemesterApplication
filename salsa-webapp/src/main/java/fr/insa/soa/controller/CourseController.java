@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/course")
 public class CourseController {
 
 	private final CourseRepository courseRepository;
@@ -16,24 +17,24 @@ public class CourseController {
 		this.courseRepository = courseRepository;
 	}
 
-	@GetMapping("/course")
+	@GetMapping
 	public List<Course> getAll() {
 		return courseRepository.findAll();
 	}
 
-	@GetMapping("/course/{code}")
+	@GetMapping("{code}")
 	public Course get(@PathVariable String code) {
 		return courseRepository.findByCode(code).orElseThrow(() ->
 				new CourseNotFoundException(code)
 		);
 	}
 
-	@PutMapping("/course")
+	@PutMapping
 	public Course add(@RequestBody Course course) {
 		return courseRepository.save(course);
 	}
 
-	@DeleteMapping("/course/{code}")
+	@DeleteMapping("{code}")
 	public Course delete(@PathVariable String code) {
 		return courseRepository.deleteByCode(code).orElseThrow(() ->
 				new CourseNotFoundException(code)
