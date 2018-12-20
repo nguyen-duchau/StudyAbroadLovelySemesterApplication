@@ -1,27 +1,29 @@
 package fr.insa.soa.model.bean;
 
+import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Data
+@Entity
 public class University {
 
-   private String name;
+   private @Id String name;
+   private String address;
+   //private Country country;
+   // private List<Course> course;
    
    public void setName(String value) {
       this.name = value;
    }
-   
    public String getName() {
       return this.name;
    }
    
-   private String address;
-   
    public void setAddress(String value) {
       this.address = value;
    }
-   
    public String getAddress() {
       return this.address;
    }
@@ -33,16 +35,14 @@ public class University {
     *           university        &gt;       country
     * </pre>
     */
-   private Country country;
-   
+   /*
    public void setCountry(Country value) {
       this.country = value;
    }
-   
    public Country getCountry() {
       return this.country;
    }
-   
+   */
    /**
     * <pre>
     *           1..1     0..*
@@ -50,13 +50,11 @@ public class University {
     *           proposedBy        &gt;       course
     * </pre>
     */
-   private List<Course> course;
-   
+   /*
    public List<Course> getCourse() {
       if (this.course == null) {
          this.course = new ArrayList<Course>();
       }
       return this.course;
-   }
-   
-   }
+   }*/
+}
