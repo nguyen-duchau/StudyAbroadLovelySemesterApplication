@@ -19,5 +19,4 @@ public class Insa extends University {
       }
       return this.staff;
    }
-   
-   }
+}

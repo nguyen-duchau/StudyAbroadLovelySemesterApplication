@@ -2,6 +2,7 @@ package fr.insa.soa.model.bean;
 
 
 public class Staff extends Account {
+
    private String name;
    
    public void setName(String value) {
