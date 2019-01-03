@@ -1,6 +1,6 @@
 package fr.insa.soa.model.repository;
 
-import fr.insa.soa.model.bean.Course;
+import fr.insa.soa.model.entities.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

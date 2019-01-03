@@ -1,6 +1,6 @@
 package fr.insa.soa.controller;
 
-import fr.insa.soa.model.bean.University;
+import fr.insa.soa.model.entities.University;
 import fr.insa.soa.model.repository.UniversityRepository;
 import fr.insa.soa.model.exception.UniversityNotFoundException;
 import org.springframework.web.bind.annotation.*;

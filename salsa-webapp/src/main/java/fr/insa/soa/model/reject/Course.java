@@ -1,9 +1,9 @@
 package fr.insa.soa.model.reject;
 
-import fr.insa.soa.model.bean.LearningAgreement;
-import fr.insa.soa.model.bean.Score;
-import fr.insa.soa.model.bean.Speciality;
-import fr.insa.soa.model.bean.University;
+import fr.insa.soa.model.entities.LearningAgreement;
+import fr.insa.soa.model.entities.Score;
+import fr.insa.soa.model.entities.Speciality;
+import fr.insa.soa.model.entities.University;
 
 import java.util.Set;
 import java.util.HashSet;

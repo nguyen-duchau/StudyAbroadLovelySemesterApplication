@@ -1,6 +1,6 @@
 package fr.insa.soa.controller;
 
-import fr.insa.soa.model.bean.Course;
+import fr.insa.soa.model.entities.Course;
 import fr.insa.soa.model.exception.CourseNotFoundException;
 import fr.insa.soa.model.repository.CourseRepository;
 import org.springframework.web.bind.annotation.*;
