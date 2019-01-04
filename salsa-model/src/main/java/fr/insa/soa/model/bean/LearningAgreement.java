@@ -1,24 +1,29 @@
 package fr.insa.soa.model.bean;
 
+import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.*;
 
+//@Data
+//@Entity
 public class LearningAgreement extends Enrolment {
-   /**
-    * <pre>
-    *           0..*     0..*
-    * LearningAgreement ------------------------- Course
-    *           learningAgreement        &gt;       course
-    * </pre>
-    */
-   private List<Course> course;
+
+   //Todo classe fille
+
+/*   @OneToMany
+   private Set<Course> course;
    
-   public List<Course> getCourse() {
+   public Set<Course> getCourse() {
       if (this.course == null) {
-         this.course = new ArrayList<Course>();
+         this.course = new HashSet<Course>();
       }
       return this.course;
    }
-   
+
+   public void addCourse(Course course){
+      this.course.add(course);
    }
+*/
+}

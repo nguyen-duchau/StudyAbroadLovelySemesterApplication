@@ -1,68 +1,64 @@
 package fr.insa.soa.model.bean;
 
-import fr.insa.soa.model.bean.Course;
+import lombok.Data;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.util.Set;
-import java.util.HashSet;
-
+@Data
+@Entity
 public class Speciality {
-   /**
-    * <pre>
-    *           1..1     0..*
-    * Speciality ------------------------- Student
-    *           speciality        &lt;       student
-    * </pre>
-    */
-   private Set<Student> student;
-   
-   public Set<Student> getStudent() {
-      if (this.student == null) {
-         this.student = new HashSet<Student>();
-      }
-      return this.student;
-   }
-   
-   /**
-    * <pre>
-    *           0..*     0..*
-    * Speciality ------------------------- Course
-    *           speciality        &gt;       class
-    * </pre>
-    */
-   private Set<Course> courses;
-   
-   public Set<Course> getClass_() {
-      if (this.courses == null) {
-         this.courses = new HashSet<Course>();
-      }
-      return this.courses;
-   }
-   
+
+   private @Id String code;
    private String department;
-   
+
+   @OneToMany(mappedBy = "speciality")
+   private List<Student> students;
+
+   @ManyToMany
+   private List<Course> courses;
+
+   public void setCode(String code){
+      this.code = code;
+   }
+   public String getCode(){return this.code; }
+
    public void setDepartment(String value) {
       this.department = value;
    }
-   
    public String getDepartment() {
       return this.department;
    }
-   
-   /**
-    * <pre>
-    *           1..1     1..1
-    * Speciality ------------------------- StudentYear
-    *           speciality        &gt;       year
-    * </pre>
-    */
-   private StudentYear year;
-   
-   public void setYear(StudentYear value) {
-      this.year = value;
+
+   public List<Student> getStudents() {
+      if (this.students == null) {
+         this.students = new ArrayList<Student>();
+      }
+      return this.students;
+   }
+
+   public void addStudent(Student student){
+      if (this.students == null) {
+         this.students = new ArrayList<Student>();
+      }
+      this.students.add(student);
    }
    
-   public StudentYear getYear() {
-      return this.year;
+   public List<Course> getCourses() {
+      if (this.courses == null) {
+         this.courses = new ArrayList<Course>();
+      }
+      return this.courses;
    }
-   
+
+   public void addCourse(Course course){
+      if (this.courses == null) {
+         this.courses = new ArrayList<Course>();
+      }
+      this.courses.add(course);
    }
+
+}

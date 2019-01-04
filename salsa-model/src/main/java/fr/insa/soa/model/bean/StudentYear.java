@@ -1,8 +1,14 @@
-package fr.insa.soa.model.bean;
+/*package fr.insa.soa.model.bean;
 
+import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Data
+@Entity
 public class StudentYear {
-   private int studentYear;
+   private @Id Integer studentYear;
    
    public void setStudentYear(int value) {
       this.studentYear = value;
@@ -11,14 +17,8 @@ public class StudentYear {
    public int getStudentYear() {
       return this.studentYear;
    }
-   
-   /**
-    * <pre>
-    *           1..1     1..1
-    * StudentYear ------------------------- Speciality
-    *           year        &lt;       speciality
-    * </pre>
-    */
+
+
    private Speciality speciality;
    
    public void setSpeciality(Speciality value) {
@@ -28,5 +28,6 @@ public class StudentYear {
    public Speciality getSpeciality() {
       return this.speciality;
    }
-   
+
    }
+*/

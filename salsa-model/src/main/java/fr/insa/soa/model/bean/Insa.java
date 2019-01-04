@@ -1,16 +1,28 @@
 package fr.insa.soa.model.bean;
 
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.Set;
 import java.util.HashSet;
 
+//@Data
+//@Entity
 public class Insa extends University {
-   /**
-    * <pre>
-    *           1..1     0..*
-    * Insa ------------------------- Staff
-    *           insa        &gt;       staff
-    * </pre>
-    */
+
+   private @Id Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+/*
+   @OneToMany(mappedBy = "insa")
    private Set<Staff> staff;
    
    public Set<Staff> getStaff() {
@@ -19,4 +31,10 @@ public class Insa extends University {
       }
       return this.staff;
    }
+
+   public void addStaff(Staff staff){
+      this.staff.add(staff);
+   }
+   */
+
 }
