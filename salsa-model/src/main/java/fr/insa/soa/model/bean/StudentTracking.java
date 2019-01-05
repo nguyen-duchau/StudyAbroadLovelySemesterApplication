@@ -3,72 +3,81 @@ package fr.insa.soa.model.bean;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.*;
 
 @Data
 @Entity
 public class StudentTracking {
 
-   private @Id @GeneratedValue Long code;
-   private Date departure;
-   private Date arrival;
+    private @Id @GeneratedValue Long code;
+    private Date departure;
+    private Date arrival;
 
-  @OneToMany(mappedBy = "studentTracking")
-   private Set<Difficulty> difficulty;
+    @OneToMany(mappedBy = "studentTracking")
+    private List<Difficulty> difficulty;
 
-  @OneToMany(mappedBy = "studentTracking")
-   private Set<ReportCard> reportCards;
+    @ManyToMany
+    private List<Partners> updatedBy;
 
-   public Long getCode(){return this.code; }
+    @OneToMany(mappedBy = "studentTracking")
+    private List<ReportCard> reportCards;
 
-   public void setDeparture(Date value) {
-      this.departure = value;
-   }
-   public Date getDeparture() {
-      return this.departure;
-   }
+    public StudentTracking(){}
 
-   public void setArrival(Date value) {
-      this.arrival = value;
-   }
-   public Date getArrival() {
-      return this.arrival;
-   }
+    public Long getCode(){return this.code; }
 
-   public Set<Difficulty> getDifficulty() {
+    public void setDeparture(Date value) {
+    this.departure = value;
+    }
+    public Date getDeparture() {
+    return this.departure;
+    }
+
+    public void setArrival(Date value) {
+    this.arrival = value;
+    }
+    public Date getArrival() {
+    return this.arrival;
+    }
+
+    public List<Difficulty> getDifficulty() {
       if (this.difficulty == null) {
-         this.difficulty = new HashSet<Difficulty>();
+         this.difficulty = new ArrayList<>();
       }
       return this.difficulty;
-   }
-/*
-   @ManyToMany
-   private Set<Partners> updatedBy;
+    }
 
-   public Set<Partners> getUpdatedBy() {
+    public void addDifficulty(Difficulty difficulty){
+        if (this.difficulty == null) {
+            this.difficulty = new ArrayList<>();
+        }
+        this.difficulty.add(difficulty);
+    }
+
+   public List<Partners> getUpdatedBy() {
       if (this.updatedBy == null) {
-         this.updatedBy = new HashSet<Partners>();
+         this.updatedBy = new ArrayList<>();
       }
       return this.updatedBy;
    }
 
    public void addPartner(Partners partner){
-      this.updatedBy.add(partner);
+       if (this.updatedBy == null) {
+           this.updatedBy = new ArrayList<>();
+       }
+       this.updatedBy.add(partner);
    }
-*/
    
-   public Set<ReportCard> getReportCard() {
+   public List<ReportCard> getReportCard() {
       if (this.reportCards == null) {
-         this.reportCards = new HashSet<ReportCard>();
+         this.reportCards = new ArrayList<>();
       }
       return this.reportCards;
    }
 
    public void addReportCard(ReportCard reportCard){
        if (this.reportCards == null) {
-           this.reportCards = new HashSet<ReportCard>();
+           this.reportCards = new ArrayList<>();
        }
        this.reportCards.add(reportCard);
    }

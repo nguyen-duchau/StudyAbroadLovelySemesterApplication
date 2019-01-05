@@ -21,6 +21,8 @@ public class ReportCard {
    @ManyToOne
    private StudentTracking studentTracking;
 
+   public ReportCard(){}
+
    public Long getId() {
       return id;
    }
@@ -39,14 +41,14 @@ public class ReportCard {
 
    public List<Score> getScores() {
       if (this.scores == null) {
-         this.scores = new ArrayList<Score>();
+         this.scores = new ArrayList<>();
       }
       return this.scores;
    }
 
    public void addScore(Score score){
       if (this.scores == null) {
-         this.scores = new ArrayList<Score>();
+         this.scores = new ArrayList<>();
       }
       this.scores.add(score);
    }

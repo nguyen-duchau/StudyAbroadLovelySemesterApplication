@@ -17,6 +17,8 @@ public class Session {
    @OneToOne(mappedBy = "session")
    private Score score;
 
+   public Session(){}
+
    public Long getId(){return this.id; }
 
    public Integer getCode(){return this.code; }

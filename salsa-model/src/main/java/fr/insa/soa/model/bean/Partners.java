@@ -1,29 +1,39 @@
 package fr.insa.soa.model.bean;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import java.util.Set;
-import java.util.HashSet;
+import javax.persistence.PrimaryKeyJoinColumn;
+import java.util.ArrayList;
+import java.util.List;
 
-//@Data
-//@Entity
+@EqualsAndHashCode(callSuper = true)
+@Data
+@Entity
+@PrimaryKeyJoinColumn(name = "name")
 public class Partners extends University {
 
-   //TODO classe fille
-/*   @ManyToMany(mappedBy = "updatedBy")
-   private Set<StudentTracking> studentTracking;
+   @ManyToMany(mappedBy = "updatedBy")
+   private List<StudentTracking> studentTracking;
+
+   public Partners(){
+       super();
+   }
    
-   public Set<StudentTracking> getStudentTracking() {
+   public List<StudentTracking> getStudentTracking() {
       if (this.studentTracking == null) {
-         this.studentTracking = new HashSet<StudentTracking>();
+         this.studentTracking = new ArrayList<>();
       }
       return this.studentTracking;
    }
 
    public void addStudentTracking (StudentTracking studentTracking){
+       if (this.studentTracking == null) {
+           this.studentTracking = new ArrayList<>();
+       }
       this.studentTracking.add(studentTracking);
    }
-*/
+
 }

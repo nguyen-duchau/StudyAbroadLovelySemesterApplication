@@ -1,5 +1,6 @@
 package fr.insa.soa.model.bean;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -7,12 +8,13 @@ import java.util.Date;
 import java.util.List;
 
 
-//@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-public class Student {
+@PrimaryKeyJoinColumn(name = "id")
+public class Student extends Account {
 
-   private @Id String name;
+   private String name;
    private Date birthday;
 
    @ManyToOne
@@ -26,6 +28,14 @@ public class Student {
 
    @ManyToMany(mappedBy = "students")
    private List<YearEnrolment> yearEnrolments;
+
+    public Student(){
+        super();
+    }
+
+    public Student(String username, String password){
+        super(username, password);
+    }
 
    public void setName(String value) {
       this.name = value;
@@ -60,16 +70,16 @@ public class Student {
 
    public List<YearEnrolment> getYearEnrolments(){
       if (this.yearEnrolments == null) {
-         this.yearEnrolments = new ArrayList<YearEnrolment>();
+         this.yearEnrolments = new ArrayList<>();
       }
       return this.yearEnrolments;
    }
 
    public void addYearEnrolment(YearEnrolment yearEnrolment){
       if (this.yearEnrolments == null) {
-         this.yearEnrolments = new ArrayList<YearEnrolment>();
+         this.yearEnrolments = new ArrayList<>();
       }
-      this.addYearEnrolment(yearEnrolment);
+      this.yearEnrolments.add(yearEnrolment);
    }
 
 }

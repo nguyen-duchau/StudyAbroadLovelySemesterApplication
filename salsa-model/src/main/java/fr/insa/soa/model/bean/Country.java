@@ -20,6 +20,8 @@ public class Country {
    @OneToMany(mappedBy = "country")
    private List<University> university;
 
+   public Country(){}
+
    public void setName(String value) {
       this.name = value;
    }
@@ -36,28 +38,28 @@ public class Country {
 
    public List<Student> getStudents() {
       if (this.students == null) {
-         this.students = new ArrayList<Student>();
+         this.students = new ArrayList<>();
       }
       return this.students;
    }
 
    public void addStudent(Student student) {
        if (this.students == null) {
-           this.students = new ArrayList<Student>();
+           this.students = new ArrayList<>();
        }
        this.students.add(student);
    }
 
    public List<University> getUniversity() {
       if (this.university == null) {
-         this.university = new ArrayList<University>();
+         this.university = new ArrayList<>();
       }
       return this.university;
    }
 
    public void addUniversity(University university) {
       if (this.university == null) {
-         this.university = new ArrayList<University>();
+         this.university = new ArrayList<>();
       }
       this.university.add(university);
    }

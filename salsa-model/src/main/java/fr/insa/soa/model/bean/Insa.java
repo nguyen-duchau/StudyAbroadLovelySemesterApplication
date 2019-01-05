@@ -1,40 +1,40 @@
 package fr.insa.soa.model.bean;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.util.Set;
-import java.util.HashSet;
+import javax.persistence.PrimaryKeyJoinColumn;
+import java.util.ArrayList;
+import java.util.List;
 
-//@Data
-//@Entity
+
+@EqualsAndHashCode(callSuper = true)
+@Data
+@Entity
+@PrimaryKeyJoinColumn(name = "name")
 public class Insa extends University {
 
-   private @Id Integer id;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-/*
    @OneToMany(mappedBy = "insa")
-   private Set<Staff> staff;
+   private List<Staff> staff;
+
+   public Insa(){
+       super();
+   }
    
-   public Set<Staff> getStaff() {
-      if (this.staff == null) {
-         this.staff = new HashSet<Staff>();
-      }
-      return this.staff;
+   public List<Staff> getStaff() {
+       if (this.staff == null) {
+        this.staff = new ArrayList<>();
+       }
+       return this.staff;
    }
 
    public void addStaff(Staff staff){
-      this.staff.add(staff);
+       if (this.staff == null) {
+           this.staff = new ArrayList<>();
+       }
+       this.staff.add(staff);
    }
-   */
 
 }

@@ -2,13 +2,13 @@ package fr.insa.soa.model.bean;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Entity
-public class Account {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Account implements Serializable {
 
 	private @Id @GeneratedValue Long id;
 	private String username;

@@ -18,6 +18,8 @@ public class Difficulty {
    @ManyToOne
    private StudentTracking studentTracking;
 
+   public Difficulty(){}
+
    public Long getId() {
       return this.id;
    }

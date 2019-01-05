@@ -45,10 +45,10 @@ public class StudentController {
             return studentRepository.saveAndFlush(student);
     }
 
-    @GetMapping("/{name}")
-    public Student student(@PathVariable("name") String name) {
-        return studentRepository.findByName(name).orElseThrow(() ->
-                new StudentNotFoundException(name)
+    @GetMapping("/{id}")
+    public Student student(@PathVariable("id") Long id) {
+        return studentRepository.findById(id).orElseThrow(() ->
+                new StudentNotFoundException(id)
         );
     }
 

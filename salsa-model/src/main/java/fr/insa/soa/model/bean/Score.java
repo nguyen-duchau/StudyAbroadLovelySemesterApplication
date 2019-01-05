@@ -22,6 +22,8 @@ public class Score {
    @OneToOne
    private Session session;
 
+   public Score(){}
+
    public Long getId(){return this.id; }
 
    public void setScore(int value) {

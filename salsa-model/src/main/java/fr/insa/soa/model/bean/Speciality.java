@@ -21,6 +21,8 @@ public class Speciality {
    @ManyToMany
    private List<Course> courses;
 
+   public Speciality(){}
+
    public void setCode(String code){
       this.code = code;
    }
@@ -35,28 +37,28 @@ public class Speciality {
 
    public List<Student> getStudents() {
       if (this.students == null) {
-         this.students = new ArrayList<Student>();
+         this.students = new ArrayList<>();
       }
       return this.students;
    }
 
    public void addStudent(Student student){
       if (this.students == null) {
-         this.students = new ArrayList<Student>();
+         this.students = new ArrayList<>();
       }
       this.students.add(student);
    }
    
    public List<Course> getCourses() {
       if (this.courses == null) {
-         this.courses = new ArrayList<Course>();
+         this.courses = new ArrayList<>();
       }
       return this.courses;
    }
 
    public void addCourse(Course course){
       if (this.courses == null) {
-         this.courses = new ArrayList<Course>();
+         this.courses = new ArrayList<>();
       }
       this.courses.add(course);
    }

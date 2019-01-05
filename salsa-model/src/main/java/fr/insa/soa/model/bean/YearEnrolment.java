@@ -17,6 +17,11 @@ public class YearEnrolment {
    @OneToMany(mappedBy = "yearEnrolment")
    private List<Enrolment> enrolment;
 
+   @ManyToMany
+   private List<Student> students;
+
+   public YearEnrolment(){}
+
    public void setYear(int value) {
       this.year = value;
    }
@@ -26,31 +31,28 @@ public class YearEnrolment {
 
    public List<Enrolment> getEnrolment() {
       if (this.enrolment == null) {
-         this.enrolment = new ArrayList<Enrolment>(3);
+         this.enrolment = new ArrayList<>(3);
       }
       return this.enrolment;
    }
 
    public void addEnrolment(Enrolment enrolment) {
       if (this.enrolment == null) {
-         this.enrolment = new ArrayList<Enrolment>(3);
+         this.enrolment = new ArrayList<>(3);
       }
       this.enrolment.add(enrolment);
    }
 
-   @ManyToMany
-   private List<Student> students;
-
    public List<Student> getStudents(){
       if (this.students == null) {
-         this.students = new ArrayList<Student>();
+         this.students = new ArrayList<>();
       }
       return this.students;
    }
 
    public void addStudent(Student value) {
       if (this.students == null) {
-         this.students = new ArrayList<Student>();
+         this.students = new ArrayList<>();
       }
       this.students.add(value) ;
    }

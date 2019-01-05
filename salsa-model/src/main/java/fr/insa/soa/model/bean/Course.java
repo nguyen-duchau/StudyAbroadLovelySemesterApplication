@@ -2,15 +2,15 @@ package fr.insa.soa.model.bean;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Entity
-public class Course {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Course implements Serializable {
 
 	private @Id String code;
 	private String name;
@@ -31,28 +31,28 @@ public class Course {
 
 	public List<Speciality> getSpeciality(){
 		if (this.speciality == null) {
-			this.speciality = new ArrayList<Speciality>();
+			this.speciality = new ArrayList<>();
 		}
 		return this.speciality;
 	}
 
 	public void addSpeciality(Speciality speciality){
 		if (this.speciality == null) {
-			this.speciality = new ArrayList<Speciality>();
+			this.speciality = new ArrayList<>();
 		}
 		this.speciality.add(speciality);
 	}
 
 	public List<University> getUniversities(){
 		if (this.universities == null) {
-			this.universities = new ArrayList<University>();
+			this.universities = new ArrayList<>();
 		}
 		return this.universities;
 	}
 
 	public void addUniversity(University university){
 		if (this.universities == null) {
-			this.universities = new ArrayList<University>();
+			this.universities = new ArrayList<>();
 		}
 		this.universities.add(university);
 	}
