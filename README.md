@@ -22,6 +22,26 @@ A platform for INSA Toulouse organisation for student's study abroad semester.
 ### Installation instruction
 *TODO*
 
+### Run salsa-frontend
+
+To run the user interface, first access to the sub-project directory:
+```bash
+cd salsa-frontend
+```
+
+Then update dependencies and launch it up
+
+```
+salsa-frontend > npm install
+salsa-frontend > ng serve --o
+```
+
+**Attention** if you wish to launch it from project root: (untested)
+
+```bash
+ng serve --prod --base-href=../salsa-frontend/ 
+```
+
 ### Clone project from github
 #### IntelliJ Jetbrains
 * Choose **New** > **Project from Version Control** > **Git** > Fill with URL of this Git
@@ -141,5 +161,7 @@ end
 
 1. [Composite key problem](https://www.callicoder.com/hibernate-spring-boot-jpa-composite-primary-key-example/): Example
 in Speciality Entity class
+
+1. **Attention** Please keep the `.iml` files for those who work with Jetbrains IDE.
 
 1. Other problems ...
