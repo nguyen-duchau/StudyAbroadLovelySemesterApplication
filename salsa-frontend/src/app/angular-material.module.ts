@@ -9,7 +9,7 @@ import {
     MatInputModule,
     MatMenuModule,
     MatProgressSpinnerModule,
-    MatTableModule,
+    MatTableModule, MatTabsModule,
     MatToolbarModule
 } from '@angular/material';
 import {FlexLayoutModule} from "@angular/flex-layout";
@@ -21,6 +21,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         MatToolbarModule,
         MatButtonModule,
         MatCardModule,
+        MatTabsModule,
         MatInputModule,
         MatDialogModule,
         MatTableModule,
@@ -33,6 +34,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         MatToolbarModule,
         MatButtonModule,
         MatCardModule,
+        MatTabsModule,
         MatInputModule,
         MatDialogModule,
         MatTableModule,
