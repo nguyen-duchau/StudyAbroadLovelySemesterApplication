@@ -1,67 +1,63 @@
 package fr.insa.soa.model.entities;
 
-import java.util.Set;
-import java.util.HashSet;
+import lombok.Data;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
+@Data
+@Entity
 public class ReportCard {
-   /**
-    * <pre>
-    *           1..1     1..1
-    * ReportCard ------------------------- Student
-    *           reportCard        &gt;       student
-    * </pre>
-    */
+
+   private @Id @GeneratedValue Long id;
+   private Integer year;
+
+   @OneToOne(mappedBy = "reportCard")
    private Student student;
-   
+
+   @OneToMany(mappedBy = "reportCard" )
+   private List<Score> scores;
+
+   @ManyToOne
+   private StudentTracking studentTracking;
+
+   public ReportCard(){}
+
+   public Long getId() {
+      return id;
+   }
+
+   public Integer getYear() {
+      return this.year;
+   }
+   public void setYear(Integer year){ this.year = year; }
+
    public void setStudent(Student value) {
       this.student = value;
    }
-   
    public Student getStudent() {
       return this.student;
    }
-   
-   private StudentYear year;
-   
-   public void setYear(StudentYear value) {
-      this.year = value;
-   }
-   
-   public StudentYear getYear() {
-      return this.year;
-   }
-   
-   /**
-    * <pre>
-    *           1..1     0..*
-    * ReportCard ------------------------- Score
-    *           reportCard        &gt;       score
-    * </pre>
-    */
-   private Set<Score> score;
-   
-   public Set<Score> getScore() {
-      if (this.score == null) {
-         this.score = new HashSet<Score>();
+
+   public List<Score> getScores() {
+      if (this.scores == null) {
+         this.scores = new ArrayList<>();
       }
-      return this.score;
+      return this.scores;
    }
-   
-   /**
-    * <pre>
-    *           0..*     1..1
-    * ReportCard ------------------------- StudentTracking
-    *           reportCard        &lt;       studentTracking
-    * </pre>
-    */
-   private StudentTracking studentTracking;
-   
+
+   public void addScore(Score score){
+      if (this.scores == null) {
+         this.scores = new ArrayList<>();
+      }
+      this.scores.add(score);
+   }
+
    public void setStudentTracking(StudentTracking value) {
       this.studentTracking = value;
    }
-   
    public StudentTracking getStudentTracking() {
       return this.studentTracking;
    }
-   
-   }
+
+}

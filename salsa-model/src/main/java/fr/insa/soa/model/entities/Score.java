@@ -1,67 +1,55 @@
 package fr.insa.soa.model.entities;
 
-import java.util.Set;
-import java.util.HashSet;
+import lombok.Data;
 
+import javax.persistence.*;
+
+@Data
+@Entity
 public class Score {
-   /**
-    * <pre>
-    *           0..*     1..1
-    * Score ------------------------- ReportCard
-    *           score        &lt;       reportCard
-    * </pre>
-    */
+
+   private @Id @GeneratedValue Long id;
+   private int score;
+
+   @ManyToOne
    private ReportCard reportCard;
-   
+
+   @OneToOne
+   private Course course;
+
+   @OneToOne
+   private Session session;
+
+   public Score(){}
+
+   public Long getId(){return this.id; }
+
+   public void setScore(int value) {
+      this.score = value;
+   }
+   public int getScore() {
+      return this.score;
+   }
+
    public void setReportCard(ReportCard value) {
       this.reportCard = value;
    }
-   
    public ReportCard getReportCard() {
       return this.reportCard;
    }
    
-   private int score;
-   
-   public void setScore(int value) {
-      this.score = value;
-   }
-   
-   public int getScore() {
-      return this.score;
-   }
-   
-   /**
-    * <pre>
-    *           0..*     1..1
-    * Score ------------------------- Course
-    *           score        &gt;       class
-    * </pre>
-    */
-   private Course course;
-   
-   public void setClass_(Course value) {
+   public void setCourse(Course value) {
       this.course = value;
    }
-   
-   public Course getClass_() {
+   public Course getCourse() {
       return this.course;
    }
    
-   /**
-    * <pre>
-    *           1..1     0..*
-    * Score ------------------------- Session
-    *           score        &gt;       session
-    * </pre>
-    */
-   private Set<Session> session;
-   
-   public Set<Session> getSession() {
-      if (this.session == null) {
-         this.session = new HashSet<Session>();
-      }
+   public Session getSession() {
       return this.session;
    }
-   
+   public void setSession(Session session){
+      this.session= session;
    }
+
+}

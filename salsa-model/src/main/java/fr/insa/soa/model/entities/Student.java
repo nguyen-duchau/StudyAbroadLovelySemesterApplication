@@ -1,87 +1,85 @@
 package fr.insa.soa.model.entities;
-import java.util.HashSet;
-import java.util.Set;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
+@EqualsAndHashCode(callSuper = true)
+@Data
+@Entity
+@PrimaryKeyJoinColumn(name = "id")
 public class Student extends Account {
 
-   /**
-    * <pre>
-    *           1..1     1..1
-    * Student ------------------------- ReportCard
-    *           student        &lt;       reportCard
-    * </pre>
-    */
-//   private ReportCard reportCard;
-   
-//   public void setReportCard(ReportCard value) {
-//      this.reportCard = value;
-//   }
-   
-//   public ReportCard getReportCard() {
-//      return this.reportCard;
-//   }
-   
-   /**
-    * <pre>
-    *           0..*     1..1
-    * Student ------------------------- Speciality
-    *           student        &gt;       speciality
-    * </pre>
-    */
+   private String name;
+   private Date birthday;
+
+   @ManyToOne
+   private Country nationality;
+
+   @OneToOne
+   private ReportCard reportCard;
+
+   @ManyToOne
    private Speciality speciality;
+
+   @ManyToMany(mappedBy = "students")
+   private List<YearEnrolment> yearEnrolments;
+
+    public Student(){
+        super();
+    }
+
+    public Student(String username, String password){
+        super(username, password);
+    }
+
+   public void setName(String value) {
+      this.name = value;
+   }
+   public String getName() {
+      return this.name;
+   }
+
+   public void setBirthday(Date birthday){ this.birthday = birthday; }
+   public Date getBirthday(){return this.birthday; }
+
+   public void setNationality(Country value) {
+      this.nationality = value;
+   }
+   public Country getNationality() {
+      return this.nationality;
+   }
+
+   public void setReportCard(ReportCard value) {
+      this.reportCard = value;
+   }
+   public ReportCard getReportCard() {
+      return this.reportCard;
+   }
    
    public void setSpeciality(Speciality value) {
       this.speciality = value;
    }
-   
    public Speciality getSpeciality() {
       return this.speciality;
    }
-   
-   /**
-    * <pre>
-    *           0..*     1..1
-    * Student ------------------------- Country
-    *           student        &lt;       nationality
-    * </pre>
-    */
-   private Country nationality;
-   
-   public void setNationality(Country value) {
-      this.nationality = value;
-   }
-   
-   public Country getNationality() {
-      return this.nationality;
-   }
-   
-   /**
-    * <pre>
-    *           1..1     0..*
-    * Student ------------------------- YearEnrolment
-    *           student        &gt;       yearEnrolment
-    * </pre>
-    */
-   private Set<YearEnrolment> yearEnrolment;
-   
-   public Set<YearEnrolment> getYearEnrolment() {
-      if (this.yearEnrolment == null) {
-         this.yearEnrolment = new HashSet<YearEnrolment>();
+
+   public List<YearEnrolment> getYearEnrolments(){
+      if (this.yearEnrolments == null) {
+         this.yearEnrolments = new ArrayList<>();
       }
-      return this.yearEnrolment;
+      return this.yearEnrolments;
    }
-   
-   private String name;
-   private Date birthday;
-   
-   public void setName(String value) {
-      this.name = value;
+
+   public void addYearEnrolment(YearEnrolment yearEnrolment){
+      if (this.yearEnrolments == null) {
+         this.yearEnrolments = new ArrayList<>();
+      }
+      this.yearEnrolments.add(yearEnrolment);
    }
-   
-   public String getName() {
-      return this.name;
-   }
-   
-   }
+
+}

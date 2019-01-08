@@ -1,63 +1,66 @@
 package fr.insa.soa.model.entities;
 
 import lombok.Data;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
-import java.io.Serializable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
-@IdClass(Speciality.class)
-public class Speciality implements Serializable {
+public class Speciality {
 
-   @Id
-   private int year;
-
-   @Id
+   private @Id String code;
    private String department;
 
-   public Speciality() {}
+   @OneToMany(mappedBy = "speciality")
+   private List<Student> students;
 
-   public Speciality(int year, String department) {
-      this.department = department;
-      this.year = year;
+   @ManyToMany
+   private List<Course> courses;
+
+   public Speciality(){}
+
+   public void setCode(String code){
+      this.code = code;
    }
+   public String getCode(){return this.code; }
 
-   public void setYear(int year) {
-      this.year = year;
+   public void setDepartment(String value) {
+      this.department = value;
    }
-
-   public int getYear() {
-      return this.year;
-   }
-
-   public void setDepartment(String department) {
-      this.department = department;
-   }
-
    public String getDepartment() {
       return this.department;
    }
 
-   // TODO student year will be replaced for instance by an integer
-//   /**
-//    * <pre>
-//    *           1..1     1..1
-//    * Speciality ------------------------- StudentYear
-//    *           speciality        &gt;       year
-//    * </pre>
-//    */
-//   private StudentYear year;
-//
-//   public void setYear(StudentYear value) {
-//      this.year = value;
-//   }
-//
-//   public StudentYear getYear() {
-//      return this.year;
-//   }
+   public List<Student> getStudents() {
+      if (this.students == null) {
+         this.students = new ArrayList<>();
+      }
+      return this.students;
+   }
+
+   public void addStudent(Student student){
+      if (this.students == null) {
+         this.students = new ArrayList<>();
+      }
+      this.students.add(student);
+   }
+   
+   public List<Course> getCourses() {
+      if (this.courses == null) {
+         this.courses = new ArrayList<>();
+      }
+      return this.courses;
+   }
+
+   public void addCourse(Course course){
+      if (this.courses == null) {
+         this.courses = new ArrayList<>();
+      }
+      this.courses.add(course);
+   }
 
 }
-

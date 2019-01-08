@@ -1,24 +1,38 @@
 package fr.insa.soa.model.entities;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import java.util.*;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
+@Entity
+@PrimaryKeyJoinColumn(name = "id")
 public class LearningAgreement extends Enrolment {
-   /**
-    * <pre>
-    *           0..*     0..*
-    * LearningAgreement ------------------------- Course
-    *           learningAgreement        &gt;       course
-    * </pre>
-    */
+
+   @OneToMany
    private List<Course> course;
+
+   public LearningAgreement(){
+       super();
+   }
    
    public List<Course> getCourse() {
       if (this.course == null) {
-         this.course = new ArrayList<Course>();
+         this.course = new ArrayList<>();
       }
       return this.course;
    }
-   
+
+   public void addCourse(Course course){
+       if (this.course == null) {
+           this.course = new ArrayList<>();
+       }
+       this.course.add(course);
    }
+
+}
