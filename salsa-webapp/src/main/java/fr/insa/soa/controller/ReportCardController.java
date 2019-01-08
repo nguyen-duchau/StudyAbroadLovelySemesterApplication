@@ -1,6 +1,6 @@
 package fr.insa.soa.controller;
 
-import fr.insa.soa.model.bean.ReportCard;
+import fr.insa.soa.model.entities.ReportCard;
 import fr.insa.soa.model.exception.ReportCardNotFoundException;
 import fr.insa.soa.model.repository.ReportCardRepository;
 import org.springframework.web.bind.annotation.*;

@@ -2,17 +2,26 @@ package fr.insa.soa.model.entities;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
-public class University {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class University implements Serializable {
 
    private @Id String name;
    private String address;
-   //private Country country;
-   // private List<Course> course;
+
+   @ManyToOne
+   private Country country;
+
+   @ManyToMany
+   private List<Course> courses;
+
+   protected University(){}
    
    public void setName(String value) {
       this.name = value;
@@ -27,34 +36,25 @@ public class University {
    public String getAddress() {
       return this.address;
    }
-   
-   /**
-    * <pre>
-    *           0..*     1..1
-    * University ------------------------- Country
-    *           university        &gt;       country
-    * </pre>
-    */
-   /*
+
    public void setCountry(Country value) {
       this.country = value;
    }
    public Country getCountry() {
       return this.country;
    }
-   */
-   /**
-    * <pre>
-    *           1..1     0..*
-    * University ------------------------- Course
-    *           proposedBy        &gt;       course
-    * </pre>
-    */
-   /*
-   public List<Course> getCourse() {
-      if (this.course == null) {
-         this.course = new ArrayList<Course>();
+
+   public List<Course> getCourses() {
+      if (this.courses == null) {
+         this.courses = new ArrayList<>();
       }
-      return this.course;
-   }*/
+      return this.courses;
+   }
+
+   public void addCourse(Course course){
+      if (this.courses == null) {
+         this.courses = new ArrayList<>();
+      }
+      this.courses.add(course);
+   }
 }

@@ -1,7 +1,6 @@
 package fr.insa.soa.consumer;
 
-import fr.insa.soa.model.bean.Account;
-import fr.insa.soa.model.bean.Staff;
+import fr.insa.soa.model.entities.Staff;
 import fr.insa.soa.model.repository.AccountRepository;
 import fr.insa.soa.model.repository.CourseRepository;
 import lombok.extern.slf4j.Slf4j;

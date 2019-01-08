@@ -1,6 +1,6 @@
 package fr.insa.soa.model.repository;
 
-import fr.insa.soa.model.bean.*;
+import fr.insa.soa.model.entities.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

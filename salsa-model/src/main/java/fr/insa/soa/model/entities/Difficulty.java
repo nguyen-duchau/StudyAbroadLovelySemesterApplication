@@ -1,52 +1,48 @@
 package fr.insa.soa.model.entities;
 
 
+import lombok.Data;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Data
+@Entity
 public class Difficulty {
-   private String id;
-   
-   public void setId(String value) {
-      this.id = value;
-   }
-   
-   public String getId() {
+
+   private @Id @GeneratedValue Long id;
+   private String description;
+   private boolean treated;
+
+   @ManyToOne
+   private StudentTracking studentTracking;
+
+   public Difficulty(){}
+
+   public Long getId() {
       return this.id;
    }
-   
-   private String description;
    
    public void setDescription(String value) {
       this.description = value;
    }
-   
    public String getDescription() {
       return this.description;
    }
-   
-   private boolean treated;
-   
+
    public void setTreated(boolean value) {
       this.treated = value;
    }
-   
    public boolean isTreated() {
       return this.treated;
    }
-   
-   /**
-    * <pre>
-    *           0..*     0..1
-    * Difficulty ------------------------- StudentTracking
-    *           difficulty        &lt;       studentTracking
-    * </pre>
-    */
-   private StudentTracking studentTracking;
-   
+
    public void setStudentTracking(StudentTracking value) {
       this.studentTracking = value;
    }
-   
    public StudentTracking getStudentTracking() {
       return this.studentTracking;
    }
-   
-   }
+
+}

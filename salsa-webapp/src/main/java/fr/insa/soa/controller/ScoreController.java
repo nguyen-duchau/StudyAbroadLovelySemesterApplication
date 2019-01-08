@@ -1,6 +1,6 @@
 package fr.insa.soa.controller;
 
-import fr.insa.soa.model.bean.Score;
+import fr.insa.soa.model.entities.Score;
 import fr.insa.soa.model.exception.ScoreNotFoundException;
 import fr.insa.soa.model.repository.ScoreRepository;
 import org.springframework.web.bind.annotation.*;

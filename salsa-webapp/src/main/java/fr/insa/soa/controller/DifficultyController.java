@@ -1,6 +1,6 @@
 package fr.insa.soa.controller;
 
-import fr.insa.soa.model.bean.Difficulty;
+import fr.insa.soa.model.entities.Difficulty;
 import fr.insa.soa.model.exception.DifficultyNotFoundException;
 import fr.insa.soa.model.repository.DifficultyRepository;
 import org.springframework.web.bind.annotation.*;

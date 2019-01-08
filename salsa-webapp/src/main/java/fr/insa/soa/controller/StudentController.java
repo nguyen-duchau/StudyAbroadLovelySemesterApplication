@@ -1,7 +1,7 @@
 package fr.insa.soa.controller;
 
-import fr.insa.soa.model.bean.Account;
-import fr.insa.soa.model.bean.Student;
+import fr.insa.soa.model.entities.Account;
+import fr.insa.soa.model.entities.Student;
 import fr.insa.soa.model.exception.AccountNotFoundException;
 import fr.insa.soa.model.exception.StudentNotFoundException;
 import fr.insa.soa.model.repository.AccountRepository;
@@ -28,7 +28,7 @@ public class StudentController {
     }
 
     @PostMapping("/login")
-    public Account login(@RequestBody String username, @RequestBody String password) {
+    public fr.insa.soa.model.entities.Account login(@RequestBody String username, @RequestBody String password) {
         return accountRepository.findAccountByUsernameAndPassword(username, password).orElseThrow(() ->
                 new AccountNotFoundException(username)
         );

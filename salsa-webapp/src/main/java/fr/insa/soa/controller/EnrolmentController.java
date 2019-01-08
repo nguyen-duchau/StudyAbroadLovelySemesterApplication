@@ -1,6 +1,6 @@
 package fr.insa.soa.controller;
 
-import fr.insa.soa.model.bean.Enrolment;
+import fr.insa.soa.model.entities.Enrolment;
 import fr.insa.soa.model.exception.EnrolmentNotFoundException;
 import fr.insa.soa.model.repository.EnrolmentRepository;
 import org.springframework.web.bind.annotation.*;

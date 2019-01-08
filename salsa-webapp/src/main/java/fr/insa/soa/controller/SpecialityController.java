@@ -1,6 +1,6 @@
 package fr.insa.soa.controller;
 
-import fr.insa.soa.model.bean.Speciality;
+import fr.insa.soa.model.entities.Speciality;
 import fr.insa.soa.model.exception.SpecialityNotFoundException;
 import fr.insa.soa.model.repository.SpecialityRepository;
 import org.springframework.web.bind.annotation.*;
