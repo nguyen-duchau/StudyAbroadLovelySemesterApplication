@@ -9,7 +9,7 @@ import {AdminComponent} from './admin/admin.component';
 import {AngularMaterialModule} from './angular-material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
@@ -24,7 +24,9 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
         BrowserAnimationsModule,
         AngularMaterialModule,
         AppRouting,
-        FormsModule
+
+        FormsModule,
+        ReactiveFormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

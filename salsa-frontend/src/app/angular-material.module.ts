@@ -12,6 +12,7 @@ import {
     MatTableModule,
     MatToolbarModule
 } from '@angular/material';
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
     declarations: [],
@@ -25,7 +26,8 @@ import {
         MatTableModule,
         MatMenuModule,
         MatIconModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        FlexLayoutModule
     ], exports: [
         CommonModule,
         MatToolbarModule,
@@ -36,7 +38,8 @@ import {
         MatTableModule,
         MatMenuModule,
         MatIconModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        FlexLayoutModule
     ]
 })
 export class AngularMaterialModule {
