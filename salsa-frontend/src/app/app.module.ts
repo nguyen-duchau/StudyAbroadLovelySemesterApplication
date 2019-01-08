@@ -10,12 +10,14 @@ import {AngularMaterialModule} from './angular-material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {FormsModule} from '@angular/forms';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
-        AdminComponent
+        AdminComponent,
+        ToolbarComponent
     ],
     imports: [
         BrowserModule,
