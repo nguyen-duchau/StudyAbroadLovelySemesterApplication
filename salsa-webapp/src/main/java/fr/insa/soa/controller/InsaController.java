@@ -17,19 +17,19 @@ public class InsaController {
         this.universityRepository = universityRepository;
     }
 
-    @PutMapping
+    @PutMapping("/add")
     public University add(@RequestBody University university) {
         return universityRepository.saveAndFlush(university);
     }
 
-    @PostMapping("/name")
-    public University findName(@RequestBody String name) {
+    @GetMapping("/{name}")
+    public University findName(@PathVariable("name") String name) {
         return universityRepository.findByName(name).orElseThrow(() ->
                 new UniversityNotFoundException(name)
         );
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public List<University> all() {return universityRepository.findAll();
     }
 

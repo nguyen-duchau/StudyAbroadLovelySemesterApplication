@@ -1,38 +1,37 @@
 package fr.insa.soa.controller;
 
-import fr.insa.soa.model.entities.Account;
-import fr.insa.soa.model.entities.Student;
+import fr.insa.soa.model.bean.Account;
+import fr.insa.soa.model.bean.Student;
+import fr.insa.soa.model.exception.AccountNotFoundException;
+import fr.insa.soa.model.exception.StudentNotFoundException;
 import fr.insa.soa.model.repository.AccountRepository;
+import fr.insa.soa.model.repository.StudentRepository;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/student")
 public class StudentController {
 
     private final AccountRepository accountRepository;
+    private final StudentRepository studentRepository;
 
-    private final RestTemplate restTemplate;
-
-    public StudentController(AccountRepository accountRepository) {
+    public StudentController(AccountRepository accountRepository, StudentRepository studentRepository) {
         this.accountRepository = accountRepository;
-
-        this.restTemplate = new RestTemplate();
+        this.studentRepository = studentRepository;
     }
 
-    @PutMapping
-    public Student add(@RequestBody Student student) {
+    @PutMapping("/add/account")
+    public Account add(@RequestBody Account student) {
         return accountRepository.saveAndFlush(student);
     }
 
     @PostMapping("/login")
-    public Student login(@RequestBody Account account) {
-
-        return restTemplate.postForObject(
-                "localhost:9001/verify",
-                account,
-                Student.class);
-
+    public Account login(@RequestBody String username, @RequestBody String password) {
+        return accountRepository.findAccountByUsernameAndPassword(username, password).orElseThrow(() ->
+                new AccountNotFoundException(username)
+        );
     }
 
     @GetMapping("/success")
@@ -40,4 +39,21 @@ public class StudentController {
         return "Yo, this one is gooood";
     }
 
+
+    @PutMapping("/add")
+    public Student add(@RequestBody Student student) {
+            return studentRepository.saveAndFlush(student);
+    }
+
+    @GetMapping("/{id}")
+    public Student student(@PathVariable("id") Long id) {
+        return studentRepository.findById(id).orElseThrow(() ->
+                new StudentNotFoundException(id)
+        );
+    }
+
+    @GetMapping
+    public List<Student> all() {
+        return studentRepository.findAll();
+    }
 }
