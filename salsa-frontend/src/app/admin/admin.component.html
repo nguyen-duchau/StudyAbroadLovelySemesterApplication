@@ -1,3 +1,8 @@
-<div>
-    admin works!
-</div>
+<h3>University list</h3>
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let university of universities">
+        <h3>{{ university.name }}</h3>
+        <p>{{ university.address }}</p>
+        <p>{{ university.country }}</p>
+    </li>
+</ul>

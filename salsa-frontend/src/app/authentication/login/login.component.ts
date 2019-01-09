@@ -13,8 +13,6 @@ export class LoginComponent implements OnInit {
     }
 
     loginForm: FormGroup;
-    username: string;
-    password: string;
 
     ngOnInit() {
         this.buildForm();
@@ -22,7 +20,7 @@ export class LoginComponent implements OnInit {
 
     buildForm() {
         this.loginForm = this.formBuilder.group({
-            'email': ['', [
+            'username': ['', [
                 Validators.required
             ]
             ],
@@ -34,11 +32,14 @@ export class LoginComponent implements OnInit {
     }
 
     login(): void {
-        if (this.username === 'admin' && this.password === 'admin') {
-            this.router.navigate(['admin']);
-        } else {
-            alert('Invalide credentials');
-        }
+
+        // to recover data when submit:
+        // const account = new Account(
+        //      this.loginForm.value['username'],
+        //      this.loginForm.value['password'],
+        // );
+
+        this.router.navigate(['admin']);
     }
 
 }

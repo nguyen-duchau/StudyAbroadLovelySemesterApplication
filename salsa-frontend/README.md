@@ -8,10 +8,41 @@ Run `sudo ng serve` for a dev server. Navigate to `http://localhost:4200/`. The 
 
 ## Code scaffolding
 
-Run `ng g c component-name --module app` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng g c component-name --module app` to generate a new component. 
+You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+### Generate sub-component:
+
+Run `ng g c <mother-component>/<child-component> --module <mother-component>/<mother-component>`. Then go to the module to **export** the new sub-module.
+
+Exemple:
+
+In component **authentication** we want create a sub-component **login**,
+first make sure the parent **authentication** already has a module file **authentication.module.ts**. 
+Then run `ng g c authentication */login --module authentication/authentication`
+
+Then modify the **authentication/authentication.module.ts** as follow:
+
+```angular2
+//...
+@NgModule({
+    declarations: [
+        LoginComponent, // <-- automatic
+        //...
+    ],
+    imports: [
+        //...
+
+    ],
+    exports: [
+        LoginComponent, // <-- manually
+        //...
+    ]
+})
+//...
+```
 
 ## Build
-
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
