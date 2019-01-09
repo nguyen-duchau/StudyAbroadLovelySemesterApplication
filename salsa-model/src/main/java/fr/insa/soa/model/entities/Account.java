@@ -14,9 +14,9 @@ public abstract class Account implements Serializable {
 	private String username;
 	private String password;
 
-	protected Account() {}
+	Account() {}
 
-	protected Account(String username, String password) {
+	Account(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
