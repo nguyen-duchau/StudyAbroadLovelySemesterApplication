@@ -21,7 +21,7 @@ public abstract class University implements Serializable {
    @ManyToMany
    private List<Course> courses;
 
-   protected University(){}
+   University(){}
    
    public void setName(String value) {
       this.name = value;

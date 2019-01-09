@@ -17,7 +17,7 @@ public abstract class Enrolment implements Serializable {
    @ManyToOne
    private YearEnrolment yearEnrolment;
 
-   protected Enrolment(){}
+   Enrolment(){}
 
    public Long getId() {
       return id;
