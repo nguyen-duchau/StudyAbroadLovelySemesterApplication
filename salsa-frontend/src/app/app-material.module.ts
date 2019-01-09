@@ -4,11 +4,11 @@ import {CommonModule} from '@angular/common';
 import {
     MatButtonModule,
     MatCardModule,
-    MatDialogModule,
+    MatDialogModule, MatDividerModule, MatGridListModule,
     MatIconModule,
     MatInputModule,
     MatMenuModule,
-    MatProgressSpinnerModule,
+    MatProgressSpinnerModule, MatStepperModule,
     MatTableModule, MatTabsModule,
     MatToolbarModule
 } from '@angular/material';
@@ -28,7 +28,10 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         MatMenuModule,
         MatIconModule,
         MatProgressSpinnerModule,
-        FlexLayoutModule
+        MatDividerModule,
+        MatGridListModule,
+        FlexLayoutModule,
+        MatStepperModule
     ], exports: [
         CommonModule,
         MatToolbarModule,
@@ -41,8 +44,11 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         MatMenuModule,
         MatIconModule,
         MatProgressSpinnerModule,
-        FlexLayoutModule
+        MatDividerModule,
+        MatGridListModule,
+        FlexLayoutModule,
+        MatStepperModule
     ]
 })
-export class AngularMaterialModule {
+export class AppMaterialModule {
 }

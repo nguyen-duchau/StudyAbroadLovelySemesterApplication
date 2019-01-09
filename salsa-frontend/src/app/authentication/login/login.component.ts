@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
     }
 
     loginForm: FormGroup;
+    showSpinner = true;
 
     ngOnInit() {
         this.buildForm();
