@@ -8,11 +8,12 @@ import {Subject} from "rxjs";
 export class UniversityService {
 
     private universities: University[] = [
-        new University("INSA Toulouse", "address insa", "France"),
+        new University("INSA Lyon", "address insa", "France"),
         new University("UQAC", "québec", "Canada"),
         new University("YOKO", "Tokyo adress ...", "Japan"),
         new University("Fuck you", "fuck me", "FuckYeah"),
     ];
+
     subject = new Subject<University[]>(); // or universitySubject
 
     constructor() {

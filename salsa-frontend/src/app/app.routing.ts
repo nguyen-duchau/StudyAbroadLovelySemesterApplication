@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {AdminComponent} from './admin/admin.component';
-import {LoginComponent} from './authentication/login/login.component';
+import {LoginComponent} from './authentication/authentication-login/login.component';
 import {AuthenticationComponent} from "./authentication/authentication.component";
 import {StudentComponent} from "./student/student.component";
 import {InsaComponent} from "./insa/insa.component";
