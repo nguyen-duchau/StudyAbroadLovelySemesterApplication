@@ -1,16 +1,32 @@
 <mat-card class="mat-elevation-z8 salsa-mat-card">
     <mat-card-header>
-        <mat-card-title><h3>Student profile</h3></mat-card-title>
+        <mat-card-title>{{ student.name }}</mat-card-title>
+        <mat-card-subtitle>{{ student.formation }}</mat-card-subtitle>
     </mat-card-header>
 
-    <mat-divider></mat-divider>
-
+    <img mat-card-image src="https://source.unsplash.com/random/800x600" alt="{{ student.name }}">
     <mat-card-content>
-        <div>
-            <h3>Name </h3> {{ student.name }}
-        </div>
-        <div>
-            <h3>Formation </h3> {{ student.formation }}
-        </div>
+        <mat-list>
+            <mat-list-item>
+                <h3 mat-line>
+                    Login pseudo
+                </h3>
+                <p mat-line>
+                    {{ student.username }}
+                </p>
+            </mat-list-item>
+            <mat-list-item>
+                <h3 mat-line>
+                    Birthday
+                </h3>
+                <p mat-line>
+                    {{ student.birth | date:'longDate'}}
+                </p>
+
+            </mat-list-item>
+        </mat-list>
     </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="accent" (click)="flip()">Modify</button>
+    </mat-card-actions>
 </mat-card>

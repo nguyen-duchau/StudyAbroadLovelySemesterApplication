@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     }
 
     loginForm: FormGroup;
-    showSpinner = true;
+    showSpinner = false;
 
     ngOnInit() {
         this.buildForm();
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         //      this.loginForm.value['password'],
         // );
 
-        this.router.navigate(['admin']);
+        this.router.navigate(['student']);
     }
 
 }

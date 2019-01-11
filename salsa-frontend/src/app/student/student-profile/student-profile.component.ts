@@ -14,6 +14,13 @@ export class StudentProfileComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.profile_card_flipped = false;
+    }
+
+    // Annimation flip
+    profile_card_flipped: boolean;
+    flip() {
+        this.profile_card_flipped = !this.profile_card_flipped;
     }
 
 }

@@ -1,13 +1,12 @@
 <div class="salsa-mat-card mat-elevation-z4" gdAlignColumns="start stretch">
     <mat-horizontal-stepper [linear]=true #stepper>
-        <mat-step [stepControl]="firstFormGroup">
+        <mat-step>
             <form [formGroup]="firstFormGroup">
                 <ng-template matStepLabel>Wish List</ng-template>
-                    Choose 3 university wishes, apply to INSA and wait for response.
+                    Choose 3 university as your wishes, apply to INSA and wait for response.
+                    <salsa-student-university-choice>
 
-                <mat-form-field>
-                    <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                </mat-form-field>
+                    </salsa-student-university-choice>
                 <div>
                     <button mat-button matStepperNext>Next</button>
                 </div>

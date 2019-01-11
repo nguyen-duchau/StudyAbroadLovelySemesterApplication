@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'salsa-authentication',
-  templateUrl: './authentication.component.html',
-  styleUrls: ['./authentication.component.scss']
+    selector: 'salsa-authentication',
+    templateUrl: './authentication.component.html',
+    styleUrls: ['./authentication.component.scss']
 })
 export class AuthenticationComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
+
+
 
 }

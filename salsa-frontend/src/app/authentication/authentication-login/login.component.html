@@ -12,7 +12,8 @@
             <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid"
                     (click)="login()">log in
             </button>
+            <mat-spinner [style.display]="showSpinner ? 'block' : 'none'" color="accent"></mat-spinner>
         </form>
-        <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+
     </mat-card-content>
 </mat-card>

@@ -13,6 +13,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { AuthenticationModule } from "./authentication/authentication.module";
 import { StudentComponent } from './student/student.component';
 import {StudentModule} from "./student/student.module";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
     declarations: [

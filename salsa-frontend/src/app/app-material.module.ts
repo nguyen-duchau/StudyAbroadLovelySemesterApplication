@@ -3,10 +3,10 @@ import {CommonModule} from '@angular/common';
 
 import {
     MatButtonModule,
-    MatCardModule,
+    MatCardModule, MatCheckboxModule,
     MatDialogModule, MatDividerModule, MatGridListModule,
     MatIconModule,
-    MatInputModule,
+    MatInputModule, MatListModule,
     MatMenuModule,
     MatProgressSpinnerModule, MatStepperModule,
     MatTableModule, MatTabsModule,
@@ -31,7 +31,9 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         MatDividerModule,
         MatGridListModule,
         FlexLayoutModule,
-        MatStepperModule
+        MatStepperModule,
+        MatListModule,
+        MatCheckboxModule
     ], exports: [
         CommonModule,
         MatToolbarModule,
@@ -47,7 +49,9 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         MatDividerModule,
         MatGridListModule,
         FlexLayoutModule,
-        MatStepperModule
+        MatStepperModule,
+        MatListModule,
+        MatCheckboxModule
     ]
 })
 export class AppMaterialModule {
