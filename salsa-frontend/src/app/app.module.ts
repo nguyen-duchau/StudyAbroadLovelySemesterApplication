@@ -13,7 +13,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { AuthenticationModule } from "./authentication/authentication.module";
 import { StudentComponent } from './student/student.component';
 import {StudentModule} from "./student/student.module";
-import {FlexLayoutModule} from "@angular/flex-layout";
+import { InsaComponent } from './insa/insa.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +21,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         AdminComponent,
         ToolbarComponent,
         AuthenticationComponent,
-        StudentComponent
+        StudentComponent,
+        InsaComponent
     ],
     imports: [
         BrowserModule,
