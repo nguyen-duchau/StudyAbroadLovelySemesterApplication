@@ -4,13 +4,15 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
     selector: 'salsa-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    templateUrl: './authentication-login.component.html',
+    styleUrls: ['./authentication-login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class AuthenticationLoginComponent implements OnInit {
 
-    constructor(private router: Router, private formBuilder: FormBuilder) {
-    }
+    constructor(
+        private router: Router,
+        private formBuilder: FormBuilder
+    ) { }
 
     loginForm: FormGroup;
     showSpinner = false;

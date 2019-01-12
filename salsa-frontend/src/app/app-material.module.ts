@@ -3,12 +3,12 @@ import {CommonModule} from '@angular/common';
 
 import {
     MatButtonModule,
-    MatCardModule, MatCheckboxModule,
+    MatCardModule, MatCheckboxModule, MatDatepickerModule,
     MatDialogModule, MatDividerModule, MatGridListModule,
     MatIconModule,
     MatInputModule, MatListModule,
-    MatMenuModule,
-    MatProgressSpinnerModule, MatStepperModule,
+    MatMenuModule, MatNativeDateModule,
+    MatProgressSpinnerModule, MatSelectModule, MatStepperModule,
     MatTableModule, MatTabsModule,
     MatToolbarModule
 } from '@angular/material';
@@ -33,7 +33,10 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         FlexLayoutModule,
         MatStepperModule,
         MatListModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule // for MatDatepickerModule
     ], exports: [
         CommonModule,
         MatToolbarModule,
@@ -51,7 +54,10 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         FlexLayoutModule,
         MatStepperModule,
         MatListModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule // for MatDatepickerModule
     ]
 })
 export class AppMaterialModule {

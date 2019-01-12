@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {AdminComponent} from './admin/admin.component';
-import {LoginComponent} from './authentication/authentication-login/login.component';
 import {AuthenticationComponent} from "./authentication/authentication.component";
 import {StudentComponent} from "./student/student.component";
 import {InsaComponent} from "./insa/insa.component";
@@ -9,11 +8,12 @@ import {InsaComponent} from "./insa/insa.component";
 const routes: Routes = [
     {
         path: '',
-        component: AuthenticationComponent
+        redirectTo: 'authentication',
+        pathMatch: 'full'
     },
     {
-        path: 'login',
-        component: LoginComponent
+        path: 'authentication',
+        component: AuthenticationComponent
     },
     {
         path: 'admin',

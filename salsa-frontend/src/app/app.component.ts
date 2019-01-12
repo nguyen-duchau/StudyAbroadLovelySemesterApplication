@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {fadeAnimation} from "./salsa-animation/fade.animation";
+import {RouterOutlet} from "@angular/router";
 
 @Component({
     selector: 'salsa-root',
@@ -8,5 +9,5 @@ import {fadeAnimation} from "./salsa-animation/fade.animation";
     animations: [fadeAnimation]
 })
 export class AppComponent {
-    title = 'salsa-frontend';
+
 }

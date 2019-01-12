@@ -1,26 +1,32 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {LoginComponent} from "./authentication-login/login.component";
+import {AuthenticationLoginComponent} from "./authentication-login/authentication-login.component";
 import {AppMaterialModule} from "../app-material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { RegisterComponent } from './authentication-register/register.component';
+import { AuthenticationRegisterComponent } from './authentication-register/authentication-register.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {AuthenticationRegisterModule} from "./authentication-register/authentication-register.module";
 
 @NgModule({
     declarations: [
-        LoginComponent,
-        RegisterComponent,
+        AuthenticationLoginComponent,
+        AuthenticationRegisterComponent,
     ],
     imports: [
         CommonModule,
         AppMaterialModule,
         FlexLayoutModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+
+        AuthenticationRegisterModule
     ],
     exports: [
-        LoginComponent,
-        RegisterComponent
+
+        AuthenticationRegisterModule,
+
+        AuthenticationLoginComponent,
+        AuthenticationRegisterComponent
     ]
 })
 export class AuthenticationModule {

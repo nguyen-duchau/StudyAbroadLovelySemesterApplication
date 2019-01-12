@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Student} from "../salsa-model/student.model";
+import {Speciality} from "../salsa-model/speciality.model";
 
 @Component({
     selector: 'salsa-student',
@@ -15,11 +16,11 @@ export class StudentComponent implements OnInit {
 
     ngOnInit() {
         this.user = new Student(
-            "Student username",
-            "Student password",
+            "adrien",
+            "password",
             "Adrien",
             new Date(),
-            "5SDBD"
+            new Speciality(5, "SDBD")
         );
     }
 

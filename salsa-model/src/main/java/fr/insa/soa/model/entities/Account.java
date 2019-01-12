@@ -10,8 +10,7 @@ import java.io.Serializable;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Account implements Serializable {
 
-	private @Id @GeneratedValue Long id;
-	private String username;
+	private @Id String username;
 	private String password;
 
 	Account() {}
