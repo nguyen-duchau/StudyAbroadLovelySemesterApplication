@@ -4,6 +4,7 @@ import {AdminComponent} from './admin/admin.component';
 import {AuthenticationComponent} from "./authentication/authentication.component";
 import {StudentComponent} from "./student/student.component";
 import {InsaComponent} from "./insa/insa.component";
+import {AuthGuardService} from "./salsa-policy/auth-guard.service";
 
 const routes: Routes = [
     {
@@ -21,7 +22,8 @@ const routes: Routes = [
     },
     {
         path: 'student',
-        component: StudentComponent
+        component: StudentComponent,
+        canActivate: [ AuthGuardService ]
     },
     {
         path: 'insa',

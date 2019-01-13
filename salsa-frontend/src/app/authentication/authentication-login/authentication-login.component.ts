@@ -41,15 +41,8 @@ export class AuthenticationLoginComponent implements OnInit {
 
     login(): void {
 
-        // to recover data when submit:
-        // const account = new Account(
-        //      this.loginForm.value['username'],
-        //      this.loginForm.value['password'],
-        // );
-
         let user: Student = this.loginForm.value;
         this.userService.login(user);
-        this.router.navigate(['student']);
     }
 
 }

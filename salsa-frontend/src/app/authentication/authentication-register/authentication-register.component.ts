@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UserService} from "../../salsa-service/user.service";
 
 @Component({
     selector: 'salsa-register',
@@ -9,7 +10,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class AuthenticationRegisterComponent implements OnInit {
 
     constructor(
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private userService: UserService
     ) {
     }
 
