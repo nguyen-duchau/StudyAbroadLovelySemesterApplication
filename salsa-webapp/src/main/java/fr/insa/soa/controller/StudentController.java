@@ -28,10 +28,8 @@ public class StudentController {
     }
 
     @PostMapping("/login")
-    public fr.insa.soa.model.entities.Account login(@RequestBody String username, @RequestBody String password) {
-        return accountRepository.findAccountByUsernameAndPassword(username, password).orElseThrow(() ->
-                new AccountNotFoundException(username)
-        );
+    public Student login(@RequestBody Account student) {
+        return studentRepository.findStudentByUsernameAndAndPassword(student.getUsername(), student.getPassword()).orElseThrow(() -> new AccountNotFoundException(student.getUsername()));
     }
 
 
