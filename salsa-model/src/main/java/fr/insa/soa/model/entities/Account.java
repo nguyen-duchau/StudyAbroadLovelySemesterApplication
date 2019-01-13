@@ -13,7 +13,7 @@ public class Account implements Serializable {
 	private @Id String username;
 	private String password;
 
-	Account() {}
+	Account(String username) {this.username=username;}
 
 	Account(String username, String password) {
 		this.username = username;

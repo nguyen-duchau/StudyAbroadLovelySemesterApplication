@@ -22,6 +22,10 @@ public abstract class University implements Serializable {
    private List<Course> courses;
 
    University(){}
+   University(String name,String address){
+      this.name=name;
+      this.address=address;
+   }
    
    public void setName(String value) {
       this.name = value;

@@ -26,6 +26,13 @@ public class AuthenticationController {
 		return repository.findAll();
 	}
 
+	@GetMapping("/account/{username}")
+	public Account get(@PathVariable String username) {
+		return repository.findAccountByUsername(username).orElseThrow(() ->
+			new AccountNotFoundException(username)
+		);
+	}
+
 	@PutMapping("/account")
 	public Account add(@RequestBody Account account) {
 		return repository.save(account);

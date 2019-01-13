@@ -3,6 +3,7 @@ package fr.insa.soa.controller;
 import fr.insa.soa.model.entities.Enrolment;
 import fr.insa.soa.model.exception.EnrolmentNotFoundException;
 import fr.insa.soa.model.repository.EnrolmentRepository;
+import org.springframework.data.convert.ReadingConverter;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class EnrolmentController {
     public Enrolment add(@RequestBody Enrolment enrolment) {
         return enrolmentRepository.saveAndFlush(enrolment);
     }
+
 
     @GetMapping("/{id}")
     public Enrolment findId(@PathVariable("id") Long id) {

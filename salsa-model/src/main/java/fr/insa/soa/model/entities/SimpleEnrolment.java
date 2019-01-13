@@ -5,18 +5,19 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
+import java.time.Year;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@PrimaryKeyJoinColumn(name = "code")
-public class MandatoryCourse extends Course {
+@PrimaryKeyJoinColumn(name = "id")
+public class SimpleEnrolment extends Enrolment {
 
-    public MandatoryCourse(){
+    public SimpleEnrolment(){
         super();
     }
 
-    public MandatoryCourse(String code, String name){
-        super(code,name);
+    public SimpleEnrolment(YearEnrolment yearEnrolment, Partners partner){
+        super(yearEnrolment, partner);
     }
 }

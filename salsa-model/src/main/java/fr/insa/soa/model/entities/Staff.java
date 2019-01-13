@@ -11,11 +11,11 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
+@PrimaryKeyJoinColumn(name = "username")
 public class Staff extends Account {
 
-    public Staff(){
-        super();
+    public Staff(String username){
+        super(username);
     }
 
     public Staff(String username, String password){
