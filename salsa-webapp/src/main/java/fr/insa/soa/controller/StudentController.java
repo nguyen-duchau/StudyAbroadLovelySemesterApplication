@@ -14,22 +14,15 @@ import java.util.List;
 @RequestMapping("/student")
 public class StudentController {
 
-    private final AccountRepository accountRepository;
     private final StudentRepository studentRepository;
 
     public StudentController(AccountRepository accountRepository, StudentRepository studentRepository) {
-        this.accountRepository = accountRepository;
         this.studentRepository = studentRepository;
-    }
-
-    @PutMapping("/add/account")
-    public Account add(@RequestBody Account student) {
-        return accountRepository.saveAndFlush(student);
     }
 
     @PostMapping("/login")
     public fr.insa.soa.model.entities.Account login(@RequestBody String username, @RequestBody String password) {
-        return accountRepository.findAccountByUsernameAndPassword(username, password).orElseThrow(() ->
+        return studentRepository.findByUsernameAndPassword(username, password).orElseThrow(() ->
                 new AccountNotFoundException(username)
         );
     }
@@ -45,10 +38,10 @@ public class StudentController {
             return studentRepository.saveAndFlush(student);
     }
 
-    @GetMapping("/{id}")
-    public Student student(@PathVariable("id") Long id) {
-        return studentRepository.findById(id).orElseThrow(() ->
-                new StudentNotFoundException(id)
+    @GetMapping("/{username}")
+    public Student student(@PathVariable("username") String username) {
+        return studentRepository.findById(username).orElseThrow(() ->
+                new StudentNotFoundException(username)
         );
     }
 

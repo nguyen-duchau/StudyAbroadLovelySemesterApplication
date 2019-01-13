@@ -26,10 +26,10 @@ public class AuthenticationController {
 		return repository.findAll();
 	}
 
-	@GetMapping("/account/{id}")
-	public Account get(@PathVariable Long id) {
-		return repository.findById(id).orElseThrow(() ->
-			new AccountNotFoundException(id)
+	@GetMapping("/account/{username}")
+	public Account get(@PathVariable String username) {
+		return repository.findAccountByUsername(username).orElseThrow(() ->
+			new AccountNotFoundException(username)
 		);
 	}
 
