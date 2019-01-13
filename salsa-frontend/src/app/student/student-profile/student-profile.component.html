@@ -1,7 +1,7 @@
-<mat-card class="mat-elevation-z8 salsa-mat-card">
+<mat-card class="mat-elevation-z8 salsa-mat-card" *ngIf="student">
     <mat-card-header>
         <mat-card-title>{{ student.name }}</mat-card-title>
-        <mat-card-subtitle>{{ student.formation }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ student.speciality }}</mat-card-subtitle>
     </mat-card-header>
 
     <img mat-card-image src="https://source.unsplash.com/random/800x600" alt="{{ student.name }}">
@@ -20,13 +20,13 @@
                     Birthday
                 </h3>
                 <p mat-line>
-                    {{ student.birth | date:'longDate'}}
+                    {{ student.birth | date:'longDate' }}
                 </p>
 
             </mat-list-item>
         </mat-list>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button color="accent" (click)="flip()">Modify</button>
+        <button mat-raised-button color="accent" >Modify</button>
     </mat-card-actions>
 </mat-card>

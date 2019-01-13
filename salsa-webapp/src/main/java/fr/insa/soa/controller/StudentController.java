@@ -34,21 +34,16 @@ public class StudentController {
         );
     }
 
-    @GetMapping("/success")
-    public String success() {
-        return "Yo, this one is gooood";
-    }
-
 
     @PutMapping("/add")
     public Student add(@RequestBody Student student) {
             return studentRepository.saveAndFlush(student);
     }
 
-    @GetMapping("/{id}")
-    public Student student(@PathVariable("id") Long id) {
-        return studentRepository.findById(id).orElseThrow(() ->
-                new StudentNotFoundException(id)
+    @GetMapping("/{username}")
+    public Student student(@PathVariable("username") String username) {
+        return studentRepository.findByUsername(username).orElseThrow(() ->
+                new StudentNotFoundException(username)
         );
     }
 

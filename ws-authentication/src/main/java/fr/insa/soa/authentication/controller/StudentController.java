@@ -1,14 +1,11 @@
 package fr.insa.soa.authentication.controller;
 
-import fr.insa.soa.model.entities.Account;
 import fr.insa.soa.model.entities.Student;
 import fr.insa.soa.model.exception.AccountNotFoundException;
 import fr.insa.soa.model.repository.StudentRepository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/student")
 public class StudentController {

@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Student} from "../salsa-model/student.model";
-import {Speciality} from "../salsa-model/speciality.model";
+import {Subscription} from "rxjs";
+import {UserService} from "../salsa-service/user.service";
 
 @Component({
     selector: 'salsa-student',
@@ -9,19 +10,11 @@ import {Speciality} from "../salsa-model/speciality.model";
 })
 export class StudentComponent implements OnInit {
 
-    private user : Student;
-
-    constructor() {
-    }
+    constructor() {  }
 
     ngOnInit() {
-        this.user = new Student(
-            "adrien",
-            "password",
-            "Adrien",
-            new Date(),
-            new Speciality(5, "SDBD")
-        );
+
     }
+
 
 }

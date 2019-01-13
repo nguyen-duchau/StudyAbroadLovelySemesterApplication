@@ -14,6 +14,9 @@ import { AuthenticationModule } from "./authentication/authentication.module";
 import { StudentComponent } from './student/student.component';
 import {StudentModule} from "./student/student.module";
 import { InsaComponent } from './insa/insa.component';
+import {UserService} from "./salsa-service/user.service";
+import {UniversityService} from "./salsa-service/university.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
     declarations: [
@@ -28,12 +31,13 @@ import { InsaComponent } from './insa/insa.component';
         BrowserModule,
         BrowserAnimationsModule,
         AppMaterialModule,
+        HttpClientModule,
 
         AuthenticationModule,
         StudentModule,
         AppRouting
     ],
-    providers: [],
+    providers: [ UserService, UniversityService ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
