@@ -11,7 +11,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
+@PrimaryKeyJoinColumn(name = "username")
 public class Student extends Account {
 
    private String name;
@@ -26,15 +26,21 @@ public class Student extends Account {
    @ManyToOne
    private Speciality speciality;
 
-   @ManyToMany(mappedBy = "students")
+   @OneToMany(mappedBy = "students")
    private List<YearEnrolment> yearEnrolments;
 
-    public Student(){
-        super();
+    public Student(String username){
+        super(username);
     }
 
-    public Student(String username, String password){
-        super(username, password);
+    public Student(){
+        super("username");
+    }
+
+    public Student(String username, String password, Date birthday){
+
+       super(username, password);
+       this.birthday=birthday;
     }
 
    public void setName(String value) {
