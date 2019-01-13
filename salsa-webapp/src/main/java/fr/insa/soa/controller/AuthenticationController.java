@@ -27,7 +27,7 @@ public class AuthenticationController {
 	}
 
 	@GetMapping("/account/{id}")
-	public Account get(@PathVariable Long id) {
+	public Account get(@PathVariable String id) {
 		return repository.findById(id).orElseThrow(() ->
 			new AccountNotFoundException(id)
 		);
