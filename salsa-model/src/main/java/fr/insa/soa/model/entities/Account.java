@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Account implements Serializable {
+public class Account implements Serializable {
 
 	private @Id String username;
 	private String password;
