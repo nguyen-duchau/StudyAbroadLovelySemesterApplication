@@ -13,6 +13,7 @@ import java.util.List;
 public abstract class University implements Serializable {
 
    private @Id String name;
+   private String password;
    private String address;
 
    @ManyToOne
@@ -29,6 +30,9 @@ public abstract class University implements Serializable {
    public String getName() {
       return this.name;
    }
+
+   public void setPassword(String password){this.password = password;}
+   public String getPassword(){return this.password;}
    
    public void setAddress(String value) {
       this.address = value;

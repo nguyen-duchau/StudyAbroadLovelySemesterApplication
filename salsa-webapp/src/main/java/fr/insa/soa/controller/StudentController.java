@@ -29,7 +29,7 @@ public class StudentController {
 
     @PostMapping("/login")
     public Student login(@RequestBody Account student) {
-        return studentRepository.findStudentByUsernameAndAndPassword(student.getUsername(), student.getPassword()).orElseThrow(() -> new AccountNotFoundException(student.getUsername()));
+        return studentRepository.findByUsernameAndPassword(student.getUsername(), student.getPassword()).orElseThrow(() -> new AccountNotFoundException(student.getUsername()));
     }
 
 
