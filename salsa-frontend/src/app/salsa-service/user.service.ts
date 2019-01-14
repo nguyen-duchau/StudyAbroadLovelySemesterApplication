@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Student} from "../salsa-model/student.model";
 import {Subject} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -44,9 +44,11 @@ export class UserService {
                 this.router.navigate([this.callbackUrl]);
             },
 
-            (error) => {
-                console.log("Error when login : ",error);
-                this.snackBar.open(error.error, "Try again");
+            (error: HttpErrorResponse) => {
+                if(error.status == 0)
+                    this.snackBar.open("No Intenet connection or server side is not operational", "I got it");
+                else
+                    this.snackBar.open(error.message, "Try again");
             }
         )
 
@@ -64,9 +66,11 @@ export class UserService {
                 this.router.navigate([this.callbackUrl]);
             },
 
-            (error) => {
-                console.log("Error when register : ",error);
-                this.snackBar.open(error.error, "Try again");
+            (error: HttpErrorResponse) => {
+                if(error.status == 0)
+                    this.snackBar.open("No Intenet connection or server side is not operational", "I got it");
+                else
+                   this.snackBar.open(error.message, "Try again");
             }
         )
     }

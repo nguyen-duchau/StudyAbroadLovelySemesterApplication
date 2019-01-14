@@ -5,7 +5,6 @@ import {AppMaterialModule} from "../app-material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AuthenticationRegisterComponent } from './authentication-register/authentication-register.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {AuthenticationRegisterModule} from "./authentication-register/authentication-register.module";
 
 @NgModule({
     declarations: [
@@ -19,11 +18,8 @@ import {AuthenticationRegisterModule} from "./authentication-register/authentica
         FormsModule,
         ReactiveFormsModule,
 
-        AuthenticationRegisterModule
     ],
     exports: [
-
-        AuthenticationRegisterModule,
 
         AuthenticationLoginComponent,
         AuthenticationRegisterComponent

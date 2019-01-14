@@ -6,7 +6,7 @@ export class Student extends Account{
         public username: string,
         public password: string,
         public name: string,
-        public birth?: Date,
+        public birthday?: Date,
         public speciality?: Speciality
     ) {
         super(username, password);

@@ -23,7 +23,7 @@ const routes: Routes = [
     {
         path: 'student',
         component: StudentComponent,
-        canActivate: [ AuthGuardService ]
+        // canActivate: [ AuthGuardService ]
     },
     {
         path: 'insa',

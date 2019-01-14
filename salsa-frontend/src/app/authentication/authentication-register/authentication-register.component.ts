@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../salsa-service/user.service";
+import {Student} from "../../salsa-model/student.model";
+import {Account} from "../../salsa-model/account.model";
 
 @Component({
     selector: 'salsa-register',
@@ -23,19 +25,12 @@ export class AuthenticationRegisterComponent implements OnInit {
     }
 
     buildForm() {
-        this.registerForm = this.formBuilder.group({
-            'username': ['', [
-                Validators.required
-            ]
-            ],
-            'password': ['', [
-                Validators.required
-            ]
-            ],
-            'name': ['', []],
-            'birthday': ['', []],
-            'speciality': ['', []]
-        });
+        this.registerForm = this.formBuilder.group(new Student('','','',new Date()));
+    }
+
+    register() {
+        let user : Student = this.registerForm.value;
+        this.userService.register(user);
     }
 
 }
