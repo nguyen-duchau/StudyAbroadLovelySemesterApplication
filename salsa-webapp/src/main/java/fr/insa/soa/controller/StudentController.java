@@ -27,11 +27,6 @@ public class StudentController {
         return accountRepository.saveAndFlush(student);
     }
 
-    @PostMapping("/login")
-    public Student login(@RequestBody Account student) {
-        return studentRepository.findByUsernameAndPassword(student.getUsername(), student.getPassword()).orElseThrow(() -> new AccountNotFoundException(student.getUsername()));
-    }
-
 
     @PutMapping("/add")
     public Student add(@RequestBody Student student) {

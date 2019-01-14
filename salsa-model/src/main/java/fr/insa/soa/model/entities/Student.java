@@ -11,7 +11,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
+@PrimaryKeyJoinColumn(name = "username")
 public class Student extends Account {
 
    private String name;
