@@ -9,15 +9,15 @@ import java.io.Serializable;
 @Data
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Enrolment implements Serializable {
+public abstract class Enrollment implements Serializable {
 
    private @Id @GeneratedValue Long id;
    private String status;
 
    @ManyToOne
-   private YearEnrolment yearEnrolment;
+   private YearEnrollment yearEnrollment;
 
-   Enrolment(){}
+   Enrollment(){}
 
    public Long getId() {
       return id;
@@ -30,11 +30,11 @@ public abstract class Enrolment implements Serializable {
       return this.status;
    }
    
-   public void setYearEnrolment(YearEnrolment value) {
-      this.yearEnrolment = value;
+   public void setYearEnrollment(YearEnrollment value) {
+      this.yearEnrollment = value;
    }
-   public YearEnrolment getYearEnrolment() {
-      return this.yearEnrolment;
+   public YearEnrollment getYearEnrollment() {
+      return this.yearEnrollment;
    }
 
 }

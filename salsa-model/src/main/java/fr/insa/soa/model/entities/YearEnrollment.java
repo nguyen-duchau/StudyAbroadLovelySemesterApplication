@@ -8,17 +8,17 @@ import java.util.List;
 
 @Data
 @Entity
-public class YearEnrolment {
+public class YearEnrollment {
 
    private @Id int year;
 
-   @OneToMany(mappedBy = "yearEnrolment")
-   private List<Enrolment> enrolment;
+   @OneToMany(mappedBy = "yearEnrollment")
+   private List<Enrollment> enrollment;
 
    @ManyToMany
    private List<Student> students;
 
-   public YearEnrolment(){}
+   public YearEnrollment(){}
 
    public void setYear(int value) {
       this.year = value;
@@ -27,18 +27,18 @@ public class YearEnrolment {
       return this.year;
    }
 
-   public List<Enrolment> getEnrolment() {
-      if (this.enrolment == null) {
-         this.enrolment = new ArrayList<>(3);
+   public List<Enrollment> getEnrollment() {
+      if (this.enrollment == null) {
+         this.enrollment = new ArrayList<>(3);
       }
-      return this.enrolment;
+      return this.enrollment;
    }
 
-   public void addEnrolment(Enrolment enrolment) {
-      if (this.enrolment == null) {
-         this.enrolment = new ArrayList<>(3);
+   public void addEnrollment(Enrollment enrollment) {
+      if (this.enrollment == null) {
+         this.enrollment = new ArrayList<>(3);
       }
-      this.enrolment.add(enrolment);
+      this.enrollment.add(enrollment);
    }
 
    public List<Student> getStudents(){

@@ -5,7 +5,7 @@ import {AdminUniversityComponent} from "./admin-university/admin-university.comp
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'admin',
         component: AdminComponent,
         children: [
             {

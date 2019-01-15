@@ -27,7 +27,7 @@ public class Student extends Account {
    private Speciality speciality;
 
    @ManyToMany(mappedBy = "students")
-   private List<YearEnrolment> yearEnrolments;
+   private List<YearEnrollment> yearEnrollments;
 
     public Student(){
         super();
@@ -68,18 +68,18 @@ public class Student extends Account {
       return this.speciality;
    }
 
-   public List<YearEnrolment> getYearEnrolments(){
-      if (this.yearEnrolments == null) {
-         this.yearEnrolments = new ArrayList<>();
+   public List<YearEnrollment> getYearEnrollments(){
+      if (this.yearEnrollments == null) {
+         this.yearEnrollments = new ArrayList<>();
       }
-      return this.yearEnrolments;
+      return this.yearEnrollments;
    }
 
-   public void addYearEnrolment(YearEnrolment yearEnrolment){
-      if (this.yearEnrolments == null) {
-         this.yearEnrolments = new ArrayList<>();
+   public void addYearEnrollment(YearEnrollment yearEnrollment){
+      if (this.yearEnrollments == null) {
+         this.yearEnrollments = new ArrayList<>();
       }
-      this.yearEnrolments.add(yearEnrolment);
+      this.yearEnrollments.add(yearEnrollment);
    }
 
 }

@@ -13,12 +13,12 @@ import java.util.List;
 @Data
 @Entity
 @PrimaryKeyJoinColumn(name = "name")
-public class Partners extends University {
+public class Partner extends University {
 
    @ManyToMany(mappedBy = "updatedBy")
    private List<StudentTracking> studentTracking;
 
-   public Partners(){
+   public Partner(){
        super();
    }
    

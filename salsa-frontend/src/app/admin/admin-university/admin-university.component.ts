@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {University} from "../../salsa-model/university.model";
+import {Subscription} from "rxjs";
+import {MatTableDataSource} from "@angular/material";
+import {UniversityService} from "../../salsa-service/university.service";
 
 @Component({
   selector: 'salsa-admin-university',
@@ -7,9 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminUniversityComponent implements OnInit {
 
-  constructor() { }
+    universities : University[];
+    private universitySubscription: Subscription;
 
-  ngOnInit() {
-  }
+    // data table
+    dataSource : MatTableDataSource<University>;
+    displayedColumns = ['name', 'address', 'country'];
+
+    constructor(
+        private universityService: UniversityService,
+    ) {}
+
+    ngOnInit() {
+        this.universitySubscription = this.universityService.subject.subscribe(
+            (universities: University[]) => {
+                this.universities = universities;
+            }
+        );
+        this.universityService.emit();
+        this.dataSource = new MatTableDataSource<University>(this.universities);
+    }
+
+    ngOnDestroy(): void {
+        this.universitySubscription.unsubscribe();
+    }
 
 }

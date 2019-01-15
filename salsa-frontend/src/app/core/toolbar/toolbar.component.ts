@@ -9,19 +9,12 @@ import {UserService} from "../../salsa-service/user.service";
 })
 export class ToolbarComponent implements OnInit {
 
-    @Input() sidemenu_drawer: MatDrawer;
-    button_activate : boolean;
 
     constructor(
-        private userService : UserService
     ) {}
 
     ngOnInit() {
-        this.userService.adminSubject.subscribe(
-            isAdmin => {
-                this.button_activate = isAdmin;
-            }
-        );
+
     }
 
 }
