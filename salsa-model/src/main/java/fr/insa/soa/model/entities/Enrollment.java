@@ -20,11 +20,11 @@ public abstract class Enrollment implements Serializable {
    private YearEnrollment yearEnrollment;
 
    @ManyToOne
-   private Partners partner;
+   private Partner partner;
 
    Enrollment(){}
 
-   Enrollment(YearEnrollment yearEnrolment, Partners partner){
+   Enrollment(YearEnrollment yearEnrolment, Partner partner){
       this.yearEnrollment=yearEnrolment;
       this.partner=partner;
    }
@@ -47,7 +47,7 @@ public abstract class Enrollment implements Serializable {
       return this.yearEnrollment;
    }
 
-   public void setPartner(Partners partner){this.partner = partner; }
-   public Partners getPartner(){return this.partner; }
+   public void setPartner(Partner partner){this.partner = partner; }
+   public Partner getPartner(){return this.partner; }
 
 }

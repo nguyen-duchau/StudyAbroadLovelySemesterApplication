@@ -1,37 +1,33 @@
 package fr.insa.soa.controller;
 
 import fr.insa.soa.model.entities.*;
-import fr.insa.soa.model.exception.AccountNotFoundException;
-import fr.insa.soa.model.exception.PartnersNotFoundException;
-import fr.insa.soa.model.exception.StudentNotFoundException;
-import fr.insa.soa.model.exception.YearEnrolmentNotFoundException;
-import fr.insa.soa.model.repository.PartnersRepository;
-import fr.insa.soa.model.repository.SimpleEnrolmentRepository;
-import fr.insa.soa.model.repository.StudentRepository;
-import fr.insa.soa.model.repository.YearEnrolmentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import fr.insa.soa.model.exception.*;
+import fr.insa.soa.model.repository.*;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.Path;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/student")
 public class StudentController {
 
     private final StudentRepository studentRepository;
-    private final YearEnrolmentRepository yearEnrolmentRepository;
-    private final SimpleEnrolmentRepository simpleEnrolmentRepository;
-    private final PartnersRepository partnersRepository;
+    private final YearEnrollmentRepository yearEnrollmentRepository;
+    private final SimpleEnrollmentRepository simpleEnrollmentRepository;
+    private final PartnerRepository partnerRepository;
+    private final SpecialityRepository specialityRepository;
 
     public StudentController(StudentRepository studentRepository,
-                             YearEnrolmentRepository yearEnrolmentRepository,
-                             SimpleEnrolmentRepository simpleEnrolmentRepository,
-                             PartnersRepository partnersRepository) {
+                             YearEnrollmentRepository yearEnrollmentRepository,
+                             SimpleEnrollmentRepository simpleEnrollmentRepository,
+                             PartnerRepository partnerRepository,
+                             SpecialityRepository specialityRepository) {
         this.studentRepository = studentRepository;
-        this.yearEnrolmentRepository = yearEnrolmentRepository;
-        this.simpleEnrolmentRepository = simpleEnrolmentRepository;
-        this.partnersRepository = partnersRepository;
+        this.yearEnrollmentRepository = yearEnrollmentRepository;
+        this.simpleEnrollmentRepository = simpleEnrollmentRepository;
+        this.partnerRepository = partnerRepository;
+        this.specialityRepository = specialityRepository;
     }
 
     @PostMapping("/login")
@@ -47,8 +43,8 @@ public class StudentController {
             return studentRepository.saveAndFlush(student);
     }
 
-    @PutMapping("/add/YearEnrolment/{year}/{username}")
-    public YearEnrollment addYearEnrolment(@PathVariable("username") String username, @PathVariable("year") Integer year) {
+    @PutMapping("/add/YearEnrollment/{year}/{username}")
+    public YearEnrollment addYearEnrollment(@PathVariable("username") String username, @PathVariable("year") Integer year) {
 
         Student student = studentRepository.findById(username).orElseThrow(() ->
                 new StudentNotFoundException(username)
@@ -77,16 +73,16 @@ public class StudentController {
         return studentRepository.findAll();
     }
 
-    @PutMapping("/add/simpleEnrolment/{university}/{username}/{year}")
-    public Enrollment addSimpleEnrolment(@PathVariable("username") String username,
+    @PutMapping("/add/simpleEnrollment/{university}/{username}/{year}")
+    public Enrollment addSimpleEnrollment(@PathVariable("username") String username,
                                             @PathVariable("university") String university,
                                             @PathVariable("year") Integer year) {
 
-        YearEnrollment yearEnrollment = yearEnrollmentRepository.findYearEnrolmentById(username+"-"+year)
-                .orElseThrow(() -> new YearEnrolmentNotFoundException(username+"-"+year));
+        YearEnrollment yearEnrollment = yearEnrollmentRepository.findYearEnrollmentById(username+"-"+year)
+                .orElseThrow(() -> new YearEnrollmentNotFoundException(username+"-"+year));
 
-        Partners partner = partnersRepository.findByName(university)
-                .orElseThrow(() -> new PartnersNotFoundException(university));
+        Partner partner = partnerRepository.findByName(university)
+                .orElseThrow(() -> new PartnerNotFoundException(university));
 
         for (Enrollment enrollment : yearEnrollment.getEnrollment()){
             if (enrollment.getPartner().getName().equals(university)){
@@ -94,8 +90,35 @@ public class StudentController {
             }
         }
 
-        SimpleEnrollment simpleEnrolment = new SimpleEnrollment(yearEnrollment,partner);
-        return simpleEnrollmentRepository.saveAndFlush(simpleEnrolment);
+        SimpleEnrollment simpleEnrollment = new SimpleEnrollment(yearEnrollment,partner);
+        return simpleEnrollmentRepository.saveAndFlush(simpleEnrollment);
+    }
+
+    @PutMapping("/set/speciality/{username}/{code}")
+    public Speciality setSpeciality(@PathVariable ("username") String username,
+                                          @PathVariable ("code") String code){
+
+        Speciality speciality = specialityRepository.findByCode(code).orElseThrow(() ->
+                new SpecialityNotFoundException(code)
+        );
+
+        Student student = studentRepository.findByUsername(username).orElseThrow(() ->
+                new StudentNotFoundException(username)
+        );
+
+        student.setSpeciality(speciality);
+
+        return specialityRepository.saveAndFlush(speciality);
+    }
+
+    @GetMapping("/get/speciality/{username}")
+    public Speciality getSpeciality(@PathVariable ("username") String username){
+
+        Student student = studentRepository.findByUsername(username).orElseThrow(() ->
+                new StudentNotFoundException(username)
+        );
+
+        return student.getSpeciality();
     }
 
 }

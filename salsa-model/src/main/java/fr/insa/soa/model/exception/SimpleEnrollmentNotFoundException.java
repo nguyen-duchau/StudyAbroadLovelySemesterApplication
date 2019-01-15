@@ -1,8 +1,8 @@
 package fr.insa.soa.model.exception;
 
-public class SimpleEnrolmentNotFoundException extends RuntimeException {
+public class SimpleEnrollmentNotFoundException extends RuntimeException {
 
-    public SimpleEnrolmentNotFoundException(Long id) {
+    public SimpleEnrollmentNotFoundException(Long id) {
         super("Simple Enrolment not found "+id);
     }
 

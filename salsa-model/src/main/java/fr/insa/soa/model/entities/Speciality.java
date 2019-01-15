@@ -1,5 +1,6 @@
 package fr.insa.soa.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,12 +17,19 @@ public class Speciality {
    private String department;
 
    @OneToMany(mappedBy = "speciality")
+   @JsonIgnore
    private List<Student> students;
 
    @ManyToMany
+   @JsonIgnore //Todo est-ce qu'on le garde de ce coter ?
    private List<Course> courses;
 
    public Speciality(){}
+
+   public Speciality(String code, String department){
+      this.code = code;
+      this.department = department;
+   }
 
    public void setCode(String code){
       this.code = code;

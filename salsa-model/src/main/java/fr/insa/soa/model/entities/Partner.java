@@ -22,7 +22,7 @@ public class Partner extends University {
        super();
    }
 
-   public Partners (String name, String address){
+   public Partner (String name, String address){
        super(name,address);
    }
    
