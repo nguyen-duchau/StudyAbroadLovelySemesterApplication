@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface YearEnrolmentRepository extends JpaRepository<YearEnrolment, String> {
+public interface YearEnrollmentRepository extends JpaRepository<YearEnrolment, String> {
     Optional<YearEnrolment> findYearEnrolmentById(String id);
 
 }

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Student} from "../salsa-model/student.model";
 import {Subject} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -13,8 +13,11 @@ const httpOptions = {
 export class UserService {
 
     private user: Student;
-    public subject: Subject<Student>;
+    public userSubject: Subject<Student>;
     private callbackUrl : string;
+
+    private admin: boolean;
+    public adminSubject : Subject<boolean>;
 
     constructor(
         private httpClient: HttpClient,
@@ -22,33 +25,37 @@ export class UserService {
         private router: Router,
         public snackBar: MatSnackBar
     ) {
-        this.subject = new Subject<Student>();
+        // this.userSubject = new Subject<Student>();
         this.callbackUrl = this.activatedRoute.snapshot.queryParams['callbackUrl'] || '/student';
+
+        this.adminSubject = new Subject<boolean>();
     }
 
     isLoggedIn() {
         return this.user !== undefined;
     }
 
-    login(student_input: Student) {
+    login(login: Student) {
 
         this.httpClient.post<Student>(
             'http://localhost:9001/student/login',
-            student_input
+            login
 
         ).subscribe(
 
             (student) => {
                 this.user = student;
-                this.emit();
+                this.emitUser();
                 this.router.navigate([this.callbackUrl]);
             },
 
-            (error) => {
-                console.log("Error when login : ",error);
-                this.snackBar.open(error.error, "Try again");
+            (error: HttpErrorResponse) => {
+                if(error.status == 0)
+                    this.snackBar.open("No Intenet connection or server side is not operational", "I got it");
+                else
+                    this.snackBar.open(error.message, "Try again");
             }
-        )
+        );
 
     }
 
@@ -60,18 +67,32 @@ export class UserService {
         ).subscribe(
             (student) => {
                 this.user = student;
-                this.emit();
+                this.emitUser();
                 this.router.navigate([this.callbackUrl]);
             },
 
-            (error) => {
-                console.log("Error when register : ",error);
-                this.snackBar.open(error.error, "Try again");
+            (error: HttpErrorResponse) => {
+                if(error.status == 0)
+                    this.snackBar.open("No Intenet connection or server side is not operational", "I got it");
+                else
+                   this.snackBar.open(error.message, "Try again");
             }
         )
     }
 
-    emit() {
-        this.subject.next(this.user);
+    toggleAdmin(): void {
+        this.admin = !this.admin;
+        this.emitAdmin();
     }
+
+    emitUser() {
+        this.userSubject.next(this.user);
+    }
+
+    emitAdmin() {
+        this.adminSubject.next(this.admin);
+    }
+
+
+
 }

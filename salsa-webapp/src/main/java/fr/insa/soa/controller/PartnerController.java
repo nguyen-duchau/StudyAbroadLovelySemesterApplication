@@ -2,42 +2,44 @@ package fr.insa.soa.controller;
 
 import fr.insa.soa.model.entities.Course;
 import fr.insa.soa.model.entities.MandatoryCourse;
-import fr.insa.soa.model.entities.Partners;
-import fr.insa.soa.model.entities.YearEnrolment;
+import fr.insa.soa.model.entities.Partner;
+import fr.insa.soa.model.entities.YearEnrollment;
+import fr.insa.soa.model.exception.PartnerNotFoundException;
 import fr.insa.soa.model.exception.PartnersNotFoundException;
 import fr.insa.soa.model.repository.CourseRepository;
+import fr.insa.soa.model.repository.PartnerRepository;
 import fr.insa.soa.model.repository.PartnersRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/partners")
-public class PartnersController {
+@RequestMapping("/partner")
+public class PartnerController {
 
-    private final PartnersRepository partnersRepository;
+    private final PartnerRepository partnerRepository;
     private final CourseRepository courseRepository;
 
-    public PartnersController(PartnersRepository partnersRepository, CourseRepository courseRepository){
-        this.partnersRepository=partnersRepository;
+    public PartnerController(PartnerRepository partnerRepository, CourseRepository courseRepository){
+        this.partnerRepository=partnerRepository;
         this.courseRepository=courseRepository;
     }
 
 
     @GetMapping
-    public List<Partners> all() {
-        return partnersRepository.findAll();
+    public List<Partner> all() {
+        return partnerRepository.findAll();
     }
 
     @PutMapping("/add")
-    public Partners add(@RequestBody Partners student) {
-        return partnersRepository.saveAndFlush(student);
+    public Partner add(@RequestBody Partner student) {
+        return partnerRepository.saveAndFlush(student);
     }
 
     @GetMapping("/getCourses/{university}")
     public List<Course> getCourses(@PathVariable("university") String university) {
-        Partners partner = partnersRepository.findByName(university).orElseThrow(() ->
-        new PartnersNotFoundException(university)
+        Partner partner = partnerRepository.findByName(university).orElseThrow(() ->
+        new PartnerNotFoundException(university)
         );
 
         return partner.getCourses();
@@ -48,7 +50,7 @@ public class PartnersController {
                                           @PathVariable("code") String code,
                                           @PathVariable("name") String name) {
 
-        Partners partner = partnersRepository.findByName(university).orElseThrow(() ->
+        Partner partner = partnerRepository.findByName(university).orElseThrow(() ->
                 new PartnersNotFoundException(university)
         );
 

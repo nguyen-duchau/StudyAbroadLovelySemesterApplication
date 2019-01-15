@@ -9,24 +9,24 @@ import java.util.List;
 
 @Data
 @Entity
-public class YearEnrolment {
+public class YearEnrollment {
 
    private @Id String id;
    private Integer year;
 
-   @OneToMany(mappedBy = "yearEnrolment")
-   private List<Enrolment> enrolment;
+   @OneToMany(mappedBy = "yearEnrollment")
+   private List<Enrollment> enrollment;
 
    @ManyToOne
    @JsonIgnore
    private Student students;
 
-   public YearEnrolment(String username, Integer year){
+   public YearEnrollment(String username, Integer year){
       this.id=username+"-"+year;
       this.year=year;
    }
 
-   public YearEnrolment(){//TODO faire un mieux
+   public YearEnrollment(){//TODO faire un mieux
       this.id= String.valueOf(Math.random()*1000)+"-2018";
    }
 
@@ -37,18 +37,18 @@ public class YearEnrolment {
       return this.year;
    }
 
-   public List<Enrolment> getEnrolment() {
-      if (this.enrolment == null) {
-         this.enrolment = new ArrayList<>(3);
+   public List<Enrollment> getEnrollment() {
+      if (this.enrollment == null) {
+         this.enrollment = new ArrayList<>(3);
       }
-      return this.enrolment;
+      return this.enrollment;
    }
 
-   public void addEnrolment(Enrolment enrolment) {
-      if (this.enrolment == null) {
-         this.enrolment = new ArrayList<>(3);
+   public void addEnrollment(Enrollment enrollment) {
+      if (this.enrollment == null) {
+         this.enrollment = new ArrayList<>(3);
       }
-      this.enrolment.add(enrolment);
+      this.enrollment.add(enrollment);
    }
 
    public Student getStudents(){

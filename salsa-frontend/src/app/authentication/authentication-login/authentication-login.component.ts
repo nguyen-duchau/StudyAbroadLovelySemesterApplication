@@ -26,23 +26,26 @@ export class AuthenticationLoginComponent implements OnInit {
     }
 
     buildForm() {
-        // this.loginForm = this.formBuilder.group({
-        //     'username': ['', [
-        //         Validators.required
-        //     ]
-        //     ],
-        //     'password': ['', [
-        //         Validators.required
-        //     ]
-        //     ],
-        // });
-        this.loginForm = this.formBuilder.group(new Account('', ''));
+        this.loginForm = this.formBuilder.group({
+            'username': ['',
+                [
+                    Validators.required
+                ]
+            ],
+            'password': ['',
+                [
+                    Validators.required
+                ]
+            ],
+        });
     }
 
     login(): void {
 
-        let user: Student = this.loginForm.value;
-        this.userService.login(user);
+        this.userService.login(new Student(
+            this.loginForm.value['username'],
+            this.loginForm.value['password']
+        ));
     }
 
 }

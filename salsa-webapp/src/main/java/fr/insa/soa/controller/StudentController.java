@@ -48,21 +48,21 @@ public class StudentController {
     }
 
     @PutMapping("/add/YearEnrolment/{year}/{username}")
-    public YearEnrolment addYearEnrolment(@PathVariable("username") String username, @PathVariable("year") Integer year) {
+    public YearEnrollment addYearEnrolment(@PathVariable("username") String username, @PathVariable("year") Integer year) {
 
         Student student = studentRepository.findById(username).orElseThrow(() ->
                 new StudentNotFoundException(username)
         );
 
-        for (YearEnrolment yearEnr: student.getYearEnrolments()){
+        for (YearEnrollment yearEnr: student.getYearEnrollments()){
             if (yearEnr.getYear().equals(year)){
                 return yearEnr;
             }
         }
 
-        YearEnrolment yearEnrolment= new YearEnrolment(username,year);
-        yearEnrolment.setStudent(student);
-        return yearEnrolmentRepository.saveAndFlush(yearEnrolment);
+        YearEnrollment yearEnrollment= new YearEnrollment(username,year);
+        yearEnrollment.setStudent(student);
+        return yearEnrollmentRepository.saveAndFlush(yearEnrollment);
     }
 
     @GetMapping("/{username}")
@@ -78,24 +78,24 @@ public class StudentController {
     }
 
     @PutMapping("/add/simpleEnrolment/{university}/{username}/{year}")
-    public Enrolment addSimpleEnrolment(@PathVariable("username") String username,
+    public Enrollment addSimpleEnrolment(@PathVariable("username") String username,
                                             @PathVariable("university") String university,
                                             @PathVariable("year") Integer year) {
 
-        YearEnrolment yearEnrolment = yearEnrolmentRepository.findYearEnrolmentById(username+"-"+year)
+        YearEnrollment yearEnrollment = yearEnrollmentRepository.findYearEnrolmentById(username+"-"+year)
                 .orElseThrow(() -> new YearEnrolmentNotFoundException(username+"-"+year));
 
         Partners partner = partnersRepository.findByName(university)
                 .orElseThrow(() -> new PartnersNotFoundException(university));
 
-        for (Enrolment enrolment : yearEnrolment.getEnrolment()){
-            if (enrolment.getPartner().getName().equals(university)){
-                return enrolment;
+        for (Enrollment enrollment : yearEnrollment.getEnrollment()){
+            if (enrollment.getPartner().getName().equals(university)){
+                return enrollment;
             }
         }
 
-        SimpleEnrolment simpleEnrolment = new SimpleEnrolment(yearEnrolment,partner);
-        return simpleEnrolmentRepository.saveAndFlush(simpleEnrolment);
+        SimpleEnrollment simpleEnrolment = new SimpleEnrollment(yearEnrollment,partner);
+        return simpleEnrollmentRepository.saveAndFlush(simpleEnrolment);
     }
 
 }

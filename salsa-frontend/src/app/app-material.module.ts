@@ -8,7 +8,7 @@ import {
     MatIconModule,
     MatInputModule, MatListModule,
     MatMenuModule, MatNativeDateModule,
-    MatProgressSpinnerModule, MatSelectModule, MatSnackBarModule, MatStepperModule,
+    MatProgressSpinnerModule, MatRadioModule, MatSelectModule, MatSidenavModule, MatSnackBarModule, MatStepperModule,
     MatTableModule, MatTabsModule,
     MatToolbarModule
 } from '@angular/material';
@@ -37,7 +37,9 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         MatSelectModule,
         MatDatepickerModule,
         MatNativeDateModule, // for MatDatepickerModule
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatRadioModule,
+        MatSidenavModule
     ], exports: [
         CommonModule,
         MatToolbarModule,
@@ -59,7 +61,9 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         MatSelectModule,
         MatDatepickerModule,
         MatNativeDateModule, // for MatDatepickerModule
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatRadioModule,
+        MatSidenavModule
     ]
 })
 export class AppMaterialModule {

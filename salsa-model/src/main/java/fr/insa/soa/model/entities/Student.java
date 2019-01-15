@@ -26,8 +26,8 @@ public class Student extends Account {
    @ManyToOne
    private Speciality speciality;
 
-   @OneToMany(mappedBy = "students")
-   private List<YearEnrolment> yearEnrolments;
+   @ManyToMany(mappedBy = "students")
+   private List<YearEnrollment> yearEnrollments;
 
     public Student(String username){
         super(username);
@@ -37,10 +37,8 @@ public class Student extends Account {
         super("username");
     }
 
-    public Student(String username, String password, Date birthday){
-
-       super(username, password);
-       this.birthday=birthday;
+    public Student(String username, String password){
+        super(username, password);
     }
 
    public void setName(String value) {
@@ -74,18 +72,18 @@ public class Student extends Account {
       return this.speciality;
    }
 
-   public List<YearEnrolment> getYearEnrolments(){
-      if (this.yearEnrolments == null) {
-         this.yearEnrolments = new ArrayList<>();
+   public List<YearEnrollment> getYearEnrollments(){
+      if (this.yearEnrollments == null) {
+         this.yearEnrollments = new ArrayList<>();
       }
-      return this.yearEnrolments;
+      return this.yearEnrollments;
    }
 
-   public void addYearEnrolment(YearEnrolment yearEnrolment){
-      if (this.yearEnrolments == null) {
-         this.yearEnrolments = new ArrayList<>();
+   public void addYearEnrollment(YearEnrollment yearEnrollment){
+      if (this.yearEnrollments == null) {
+         this.yearEnrollments = new ArrayList<>();
       }
-      this.yearEnrolments.add(yearEnrolment);
+      this.yearEnrollments.add(yearEnrollment);
    }
 
 }

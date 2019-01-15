@@ -21,11 +21,11 @@ public class SpecialityServiceController {
         return this.specialityRepository.findAll();
     }
 
-    @GetMapping
-    public Speciality get(@RequestParam(value="year", required=false) int year,
-                          @RequestParam(value="department", required=false) String department) {
-        return this.specialityRepository.findSpecialitiesByYearAndDepartment(year, department);
-    }
+//    @GetMapping
+//    public Speciality get(@RequestParam(value="year", required=false) int year,
+//                          @RequestParam(value="department", required=false) String department) {
+//        return this.specialityRepository.findSpecialitiesByYearAndDepartment(year, department);
+//    }
 
     @PutMapping
     public void put(@RequestBody Speciality speciality) {

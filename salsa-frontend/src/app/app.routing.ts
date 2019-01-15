@@ -5,6 +5,7 @@ import {AuthenticationComponent} from "./authentication/authentication.component
 import {StudentComponent} from "./student/student.component";
 import {InsaComponent} from "./insa/insa.component";
 import {AuthGuardService} from "./salsa-policy/auth-guard.service";
+import {UniveristiesComponent} from "./univeristies/univeristies.component";
 
 const routes: Routes = [
     {
@@ -28,6 +29,10 @@ const routes: Routes = [
     {
         path: 'insa',
         component: InsaComponent
+    },
+    {
+        path: 'universities',
+        component: UniveristiesComponent
     }
 ];
 

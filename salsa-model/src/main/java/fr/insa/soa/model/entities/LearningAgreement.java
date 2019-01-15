@@ -12,7 +12,7 @@ import java.util.*;
 @Data
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
-public class LearningAgreement extends Enrolment {
+public class LearningAgreement extends Enrollment {
 
    @OneToMany
    private List<Course> course;

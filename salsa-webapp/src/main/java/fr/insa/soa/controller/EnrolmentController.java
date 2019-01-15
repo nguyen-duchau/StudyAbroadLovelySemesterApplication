@@ -1,8 +1,8 @@
 package fr.insa.soa.controller;
 
-import fr.insa.soa.model.entities.Enrolment;
-import fr.insa.soa.model.exception.EnrolmentNotFoundException;
-import fr.insa.soa.model.repository.EnrolmentRepository;
+import fr.insa.soa.model.entities.Enrollment;
+import fr.insa.soa.model.exception.EnrollmentNotFoundException;
+import fr.insa.soa.model.repository.EnrollmentRepository;
 import org.springframework.data.convert.ReadingConverter;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -11,26 +11,26 @@ import java.util.List;
 @RequestMapping("/enrolment")
 public class EnrolmentController {
 
-    private final EnrolmentRepository enrolmentRepository;
+    private final EnrollmentRepository enrolmentRepository;
 
-    EnrolmentController(EnrolmentRepository enrolmentRepository){
+    EnrolmentController(EnrollmentRepository enrolmentRepository){
         this.enrolmentRepository= enrolmentRepository;
     }
 
     @PutMapping("/add")
-    public Enrolment add(@RequestBody Enrolment enrolment) {
+    public Enrollment add(@RequestBody Enrollment enrolment) {
         return enrolmentRepository.saveAndFlush(enrolment);
     }
 
 
     @GetMapping("/{id}")
-    public Enrolment findId(@PathVariable("id") Long id) {
+    public Enrollment findId(@PathVariable("id") Long id) {
         return enrolmentRepository.findById(id).orElseThrow(() ->
-                new EnrolmentNotFoundException(id)
+                new EnrollmentNotFoundException(id)
         );
     }
 
     @GetMapping
-    public List<Enrolment> all() {return enrolmentRepository.findAll();
+    public List<Enrollment> all() {return enrolmentRepository.findAll();
     }
 }

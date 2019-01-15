@@ -10,21 +10,22 @@ import java.io.Serializable;
 @Data
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Enrolment implements Serializable {
+public abstract class Enrollment implements Serializable {
 
    private @Id @GeneratedValue Long id;
    private String status;
 
    @ManyToOne
    @JsonIgnore
-   private YearEnrolment yearEnrolment;
+   private YearEnrollment yearEnrollment;
 
    @ManyToOne
    private Partners partner;
 
-   Enrolment(){}
-   Enrolment(YearEnrolment yearEnrolment, Partners partner){
-      this.yearEnrolment=yearEnrolment;
+   Enrollment(){}
+
+   Enrollment(YearEnrollment yearEnrolment, Partners partner){
+      this.yearEnrollment=yearEnrolment;
       this.partner=partner;
    }
 
@@ -39,11 +40,11 @@ public abstract class Enrolment implements Serializable {
       return this.status;
    }
    
-   public void setYearEnrolment(YearEnrolment value) {
-      this.yearEnrolment = value;
+   public void setYearEnrollment(YearEnrollment value) {
+      this.yearEnrollment = value;
    }
-   public YearEnrolment getYearEnrolment() {
-      return this.yearEnrolment;
+   public YearEnrollment getYearEnrollment() {
+      return this.yearEnrollment;
    }
 
    public void setPartner(Partners partner){this.partner = partner; }

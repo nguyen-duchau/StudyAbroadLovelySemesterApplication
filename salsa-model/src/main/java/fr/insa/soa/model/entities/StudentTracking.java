@@ -17,7 +17,7 @@ public class StudentTracking {
     private List<Difficulty> difficulty;
 
     @ManyToMany
-    private List<Partners> updatedBy;
+    private List<Partner> updatedBy;
 
     @OneToMany(mappedBy = "studentTracking")
     private List<ReportCard> reportCards;
@@ -54,14 +54,14 @@ public class StudentTracking {
         this.difficulty.add(difficulty);
     }
 
-   public List<Partners> getUpdatedBy() {
+   public List<Partner> getUpdatedBy() {
       if (this.updatedBy == null) {
          this.updatedBy = new ArrayList<>();
       }
       return this.updatedBy;
    }
 
-   public void addPartner(Partners partner){
+   public void addPartner(Partner partner){
        if (this.updatedBy == null) {
            this.updatedBy = new ArrayList<>();
        }

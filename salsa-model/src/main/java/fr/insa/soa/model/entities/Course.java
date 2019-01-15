@@ -14,7 +14,10 @@ import java.util.List;
 public abstract class Course implements Serializable {
 
 	private @Id String code;
+
 	private String name;
+
+	private int etcs;
 
 	@ManyToMany(mappedBy = "courses")
 	private List<Speciality> speciality;
@@ -57,5 +60,13 @@ public abstract class Course implements Serializable {
 			this.universities = new ArrayList<>();
 		}
 		this.universities.add(university);
+	}
+
+	public int getEtcs() {
+		return this.etcs;
+	}
+
+	public void setEtcs(int etcs) {
+		this.etcs = etcs;
 	}
 }
