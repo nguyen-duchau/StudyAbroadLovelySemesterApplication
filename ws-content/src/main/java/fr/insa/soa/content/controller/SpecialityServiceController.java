@@ -32,8 +32,8 @@ public class SpecialityServiceController {
         this.specialityRepository.save(speciality);
     }
 
-    @DeleteMapping("/{year}/{department}")
-    public void delete(@PathVariable int year, @PathVariable String department) {
-        this.specialityRepository.deleteById(new Speciality(year, department));
-    }
+//    @DeleteMapping("/{year}/{department}")
+//    public void delete(@PathVariable int year, @PathVariable String department) {
+//        this.specialityRepository.deleteById(new Speciality(year, department));
+//    }
 }

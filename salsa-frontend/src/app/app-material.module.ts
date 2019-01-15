@@ -39,7 +39,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         MatNativeDateModule, // for MatDatepickerModule
         MatSnackBarModule,
         MatRadioModule,
-        MatSidenavModule
+        MatSidenavModule,
+        MatDialogModule
     ], exports: [
         CommonModule,
         MatToolbarModule,
@@ -63,7 +64,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         MatNativeDateModule, // for MatDatepickerModule
         MatSnackBarModule,
         MatRadioModule,
-        MatSidenavModule
+        MatSidenavModule,
+        MatDialogModule
     ]
 })
 export class AppMaterialModule {

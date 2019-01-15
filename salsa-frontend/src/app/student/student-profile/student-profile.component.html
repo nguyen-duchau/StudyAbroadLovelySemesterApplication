@@ -1,11 +1,15 @@
-<mat-card class="mat-elevation-z8 salsa-mat-card" *>
-    <mat-card-header>
+
+
+<mat-card class="mat-elevation-z8 salsa-mat-card">
+    <mat-spinner *ngIf="loading"></mat-spinner>
+
+    <mat-card-header *ngIf="!loading">
         <mat-card-title>{{ student.name }}</mat-card-title>
         <mat-card-subtitle>{{ student.speciality }}</mat-card-subtitle>
     </mat-card-header>
 
     <img mat-card-image src="https://source.unsplash.com/random/800x600" alt="{{ student.name }}">
-    <mat-card-content>
+    <mat-card-content *ngIf="loading">
         <mat-list>
             <mat-list-item>
                 <h3 mat-line>
