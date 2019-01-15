@@ -19,13 +19,13 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
 
-        this.userSubscription = this.userService.subject.subscribe(
+        this.userSubscription = this.userService.userSubject.subscribe(
             (student: Student) => {
                 this.student = student;
             }
         );
 
-        this.userService.emit();
+        this.userService.emitUser();
     }
 
     ngOnDestroy(): void {

@@ -1,18 +1,18 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {UniversityService} from "../salsa-service/university.service";
+import {Component, OnInit} from '@angular/core';
 import {University} from "../salsa-model/university.model";
 import {Subscription} from "rxjs";
 import {MatTableDataSource} from "@angular/material";
-import {UserService} from "../salsa-service/user.service";
+import {UniversityService} from "../salsa-service/university.service";
 
 @Component({
-    selector: 'salsa-admin',
-    templateUrl: './admin.component.html',
-    styleUrls: ['./admin.component.scss']
+    selector: 'salsa-univeristies',
+    templateUrl: './univeristies.component.html',
+    styleUrls: ['./univeristies.component.scss']
 })
-export class AdminComponent implements OnInit, OnDestroy {
+export class UniveristiesComponent implements OnInit {
 
-    universities : University[];
+
+    universities: University[];
     private universitySubscription: Subscription;
 
     // data table
@@ -20,9 +20,8 @@ export class AdminComponent implements OnInit, OnDestroy {
     displayedColumns = ['name', 'address', 'country'];
 
     constructor(
-        private universityService: UniversityService,
-        private userService : UserService
-    ) {}
+        private universityService: UniversityService
+    ) { }
 
     applyFilter(filterValue: string) {
         this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -42,8 +41,4 @@ export class AdminComponent implements OnInit, OnDestroy {
         this.universitySubscription.unsubscribe();
     }
 
-
-    toggleAdmin() {
-        this.userService.toggleAdmin();
-    }
 }

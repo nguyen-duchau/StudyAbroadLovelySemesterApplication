@@ -1,4 +1,27 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<salsa-toolbar></salsa-toolbar>
-<router-outlet></router-outlet>
+
+<mat-drawer-container autosize fullscreen>
+    <mat-drawer #drawer mode="over">
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <span>Salsa Admin</span>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-nav-list>
+            <mat-list-item>
+                <button mat-icon-button routerLink="/admin/university">
+                    <mat-icon>info</mat-icon>
+                </button>
+                Universities
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-drawer>
+
+    <div>
+        <salsa-toolbar [sidemenu_drawer] = "drawer"></salsa-toolbar>
+        <router-outlet layout="vertical"></router-outlet>
+    </div>
+
+</mat-drawer-container>
+
 

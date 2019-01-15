@@ -17,6 +17,8 @@ import { InsaComponent } from './insa/insa.component';
 import {UserService} from "./salsa-service/user.service";
 import {UniversityService} from "./salsa-service/university.service";
 import {HttpClientModule} from "@angular/common/http";
+import { UniveristiesComponent } from './univeristies/univeristies.component';
+import {AdminModule} from "./admin/admin.module";
 
 @NgModule({
     declarations: [
@@ -25,7 +27,8 @@ import {HttpClientModule} from "@angular/common/http";
         ToolbarComponent,
         AuthenticationComponent,
         StudentComponent,
-        InsaComponent
+        InsaComponent,
+        UniveristiesComponent
     ],
     imports: [
         BrowserModule,
@@ -35,6 +38,7 @@ import {HttpClientModule} from "@angular/common/http";
 
         AuthenticationModule,
         StudentModule,
+        AdminModule,
         AppRouting
     ],
     providers: [ UserService, UniversityService ],

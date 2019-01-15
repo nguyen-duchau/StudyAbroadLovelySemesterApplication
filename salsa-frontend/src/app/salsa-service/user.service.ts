@@ -13,8 +13,11 @@ const httpOptions = {
 export class UserService {
 
     private user: Student;
-    public subject: Subject<Student>;
+    public userSubject: Subject<Student>;
     private callbackUrl : string;
+
+    private admin: boolean;
+    public adminSubject : Subject<boolean>;
 
     constructor(
         private httpClient: HttpClient,
@@ -22,25 +25,27 @@ export class UserService {
         private router: Router,
         public snackBar: MatSnackBar
     ) {
-        this.subject = new Subject<Student>();
+        // this.userSubject = new Subject<Student>();
         this.callbackUrl = this.activatedRoute.snapshot.queryParams['callbackUrl'] || '/student';
+
+        this.adminSubject = new Subject<boolean>();
     }
 
     isLoggedIn() {
         return this.user !== undefined;
     }
 
-    login(student_input: Student) {
+    login(login: Student) {
 
         this.httpClient.post<Student>(
             'http://localhost:9001/student/login',
-            student_input
+            login
 
         ).subscribe(
 
             (student) => {
                 this.user = student;
-                this.emit();
+                this.emitUser();
                 this.router.navigate([this.callbackUrl]);
             },
 
@@ -50,7 +55,7 @@ export class UserService {
                 else
                     this.snackBar.open(error.message, "Try again");
             }
-        )
+        );
 
     }
 
@@ -62,7 +67,7 @@ export class UserService {
         ).subscribe(
             (student) => {
                 this.user = student;
-                this.emit();
+                this.emitUser();
                 this.router.navigate([this.callbackUrl]);
             },
 
@@ -75,7 +80,19 @@ export class UserService {
         )
     }
 
-    emit() {
-        this.subject.next(this.user);
+    toggleAdmin(): void {
+        this.admin = !this.admin;
+        this.emitAdmin();
     }
+
+    emitUser() {
+        this.userSubject.next(this.user);
+    }
+
+    emitAdmin() {
+        this.adminSubject.next(this.admin);
+    }
+
+
+
 }
