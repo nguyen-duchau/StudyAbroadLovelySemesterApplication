@@ -1,5 +1,6 @@
 package fr.insa.soa.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,20 +11,29 @@ import java.util.List;
 @Entity
 public class YearEnrollment {
 
-   private @Id int year;
+   private @Id String id;
+   private Integer year;
 
    @OneToMany(mappedBy = "yearEnrollment")
    private List<Enrollment> enrollment;
 
-   @ManyToMany
-   private List<Student> students;
+   @ManyToOne
+   @JsonIgnore
+   private Student students;
 
-   public YearEnrollment(){}
+   public YearEnrollment(String username, Integer year){
+      this.id=username+"-"+year;
+      this.year=year;
+   }
 
-   public void setYear(int value) {
+   public YearEnrollment(){//TODO faire un mieux
+      this.id= String.valueOf(Math.random()*1000)+"-2018";
+   }
+
+   public void setYear(Integer value) {
       this.year = value;
    }
-   public int getYear() {
+   public Integer getYear() {
       return this.year;
    }
 
@@ -41,18 +51,12 @@ public class YearEnrollment {
       this.enrollment.add(enrollment);
    }
 
-   public List<Student> getStudents(){
-      if (this.students == null) {
-         this.students = new ArrayList<>();
-      }
+   public Student getStudents(){
       return this.students;
    }
 
-   public void addStudent(Student value) {
-      if (this.students == null) {
-         this.students = new ArrayList<>();
-      }
-      this.students.add(value) ;
+   public void setStudent(Student value) {
+      this.students =value ;
    }
    
 }

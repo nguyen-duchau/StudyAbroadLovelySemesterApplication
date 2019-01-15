@@ -9,14 +9,14 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@PrimaryKeyJoinColumn(name = "code")
-public class MandatoryCourse extends Course {
+@PrimaryKeyJoinColumn(name = "id")
+public class SimpleEnrollment extends Enrollment {
 
-    public MandatoryCourse(){
+    public SimpleEnrollment(){
         super();
     }
 
-    public MandatoryCourse(String code, String name){
-        super(code,name);
+    public SimpleEnrollment(YearEnrollment yearEnrolment, Partner partner){
+        super(yearEnrolment, partner);
     }
 }

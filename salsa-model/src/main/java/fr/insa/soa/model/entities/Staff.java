@@ -14,21 +14,20 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name = "username")
 public class Staff extends Account {
 
-    private String name;
-    private String function;
-    private String email;
-
-    @ManyToOne
-    private Insa insa;
-
-    public Staff(){
-        super();
+    public Staff(String username){
+        super(username);
     }
 
     public Staff(String username, String password){
         super(username,password);
     }
 
+    private String name;
+    private String function;
+    private String email;
+
+    @ManyToOne
+    private Insa insa;
 
     public void setName(String value) {
       this.name = value;

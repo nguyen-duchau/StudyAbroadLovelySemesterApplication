@@ -29,8 +29,12 @@ public class Student extends Account {
    @ManyToMany(mappedBy = "students")
    private List<YearEnrollment> yearEnrollments;
 
+    public Student(String username){
+        super(username);
+    }
+
     public Student(){
-        super();
+        super("username");
     }
 
     public Student(String username, String password){

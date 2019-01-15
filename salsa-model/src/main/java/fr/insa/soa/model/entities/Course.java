@@ -1,5 +1,6 @@
 package fr.insa.soa.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public abstract class Course implements Serializable {
 	private List<Speciality> speciality;
 
 	@ManyToMany(mappedBy = "courses")
+	@JsonIgnore
 	private List<University> universities;
 	// Date begin, end, description, ...
 

@@ -1,6 +1,7 @@
 package fr.insa.soa.model.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,9 +16,18 @@ public abstract class Enrollment implements Serializable {
    private String status;
 
    @ManyToOne
+   @JsonIgnore
    private YearEnrollment yearEnrollment;
 
+   @ManyToOne
+   private Partner partner;
+
    Enrollment(){}
+
+   Enrollment(YearEnrollment yearEnrolment, Partner partner){
+      this.yearEnrollment=yearEnrolment;
+      this.partner=partner;
+   }
 
    public Long getId() {
       return id;
@@ -36,5 +46,8 @@ public abstract class Enrollment implements Serializable {
    public YearEnrollment getYearEnrollment() {
       return this.yearEnrollment;
    }
+
+   public void setPartner(Partner partner){this.partner = partner; }
+   public Partner getPartner(){return this.partner; }
 
 }

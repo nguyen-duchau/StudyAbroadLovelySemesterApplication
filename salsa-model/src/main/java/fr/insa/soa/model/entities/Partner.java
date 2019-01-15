@@ -21,6 +21,10 @@ public class Partner extends University {
    public Partner(){
        super();
    }
+
+   public Partner (String name, String address){
+       super(name,address);
+   }
    
    public List<StudentTracking> getStudentTracking() {
       if (this.studentTracking == null) {
