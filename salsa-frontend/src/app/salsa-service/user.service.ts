@@ -52,8 +52,10 @@ export class UserService {
             (error: HttpErrorResponse) => {
                 if(error.status == 0)
                     this.snackBar.open("No Intenet connection or server side is not operational", "I got it");
-                else
-                    this.snackBar.open(error.message, "Try again");
+                else {
+                    this.snackBar.open(error.error, "Try again");
+                }
+
             }
         );
 
@@ -75,7 +77,7 @@ export class UserService {
                 if(error.status == 0)
                     this.snackBar.open("No Intenet connection or server side is not operational", "I got it");
                 else
-                   this.snackBar.open(error.message, "Try again");
+                   this.snackBar.open(error.error, "Try again");
             }
         )
     }

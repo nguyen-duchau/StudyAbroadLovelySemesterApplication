@@ -11,6 +11,8 @@
 
         <mat-card-header>
             <mat-card-title><h3>Administration of platform</h3></mat-card-title>
+            <div fxFlex></div>
+            <button mat-icon-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
         </mat-card-header>
 
         <mat-divider></mat-divider>
@@ -18,11 +20,6 @@
         <mat-card-content>
             <router-outlet></router-outlet>
         </mat-card-content>
-        <mat-card-actions>
-            <button type="button" mat-raised-button color="primary" (click)="drawer.toggle()">
-                Toggle admin visibility
-            </button>
-        </mat-card-actions>
     </mat-card>
 
 
