@@ -27,7 +27,7 @@ public class Staff extends Account {
     private String email;
 
     @ManyToOne
-    private Insa insa;
+    private University university;
 
     public void setName(String value) {
       this.name = value;
@@ -50,11 +50,11 @@ public class Staff extends Account {
       return this.email;
     }
 
-    public void setInsa(Insa value) {
-      this.insa = value;
+    public void setUniversity(University university) {
+      this.university = university;
     }
-    public Insa getInsa() {
-      return this.insa;
+    public University getUniversity() {
+      return this.university;
     }
 
 }

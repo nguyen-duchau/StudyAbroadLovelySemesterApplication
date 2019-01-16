@@ -21,6 +21,9 @@ public abstract class University implements Serializable {
    @ManyToMany
    private List<Course> courses;
 
+   @OneToMany(mappedBy = "university")
+   private List<Staff> staff;
+
    University(){}
    University(String name,String address){
       this.name=name;
@@ -60,5 +63,19 @@ public abstract class University implements Serializable {
          this.courses = new ArrayList<>();
       }
       this.courses.add(course);
+   }
+
+   public List<Staff> getStaff() {
+      if (this.staff == null) {
+         this.staff = new ArrayList<>();
+      }
+      return this.staff;
+   }
+
+   public void addStaff(Staff staff) {
+      if (this.staff == null) {
+         this.staff = new ArrayList<>();
+      }
+      this.staff.add(staff);
    }
 }
