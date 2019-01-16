@@ -35,7 +35,7 @@ public class StudentController {
             return studentRepository.saveAndFlush(student);
     }
 
-    @PutMapping("/add/YearEnrollment/{year}/{username}")
+    @PutMapping("/year_enrollment/add/{year}/{username}")
     public YearEnrollment addYearEnrollment(@PathVariable("username") String username, @PathVariable("year") Integer year) {
 
         Student student = studentRepository.findById(username).orElseThrow(() ->
@@ -65,7 +65,7 @@ public class StudentController {
         return studentRepository.findAll();
     }
 
-    @PutMapping("/add/simpleEnrollment/{university}/{username}/{year}")
+    @PutMapping("/simpleEnrollment/{university}/{username}/{year}")
     public Enrollment addSimpleEnrollment(@PathVariable("username") String username,
                                             @PathVariable("university") String university,
                                             @PathVariable("year") Integer year) {
@@ -86,7 +86,7 @@ public class StudentController {
         return simpleEnrollmentRepository.saveAndFlush(simpleEnrollment);
     }
 
-    @PutMapping("/set/speciality/{username}/{code}")
+    @PutMapping("/speciality/add/{username}/{code}")
     public Speciality setSpeciality(@PathVariable ("username") String username,
                                           @PathVariable ("code") String code){
 
@@ -103,7 +103,7 @@ public class StudentController {
         return specialityRepository.saveAndFlush(speciality);
     }
 
-    @GetMapping("/get/speciality/{username}")
+    @GetMapping("/speciality/{username}")
     public Speciality getSpeciality(@PathVariable ("username") String username){
 
         Student student = studentRepository.findByUsername(username).orElseThrow(() ->

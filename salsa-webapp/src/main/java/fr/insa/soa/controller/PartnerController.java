@@ -35,7 +35,7 @@ public class PartnerController {
         return partnerRepository.saveAndFlush(university);
     }
 
-    @GetMapping("/getCourses/{university}")
+    @GetMapping("/course/{university}")
     public List<Course> getCourses(@PathVariable("university") String university) {
         Partner partner = partnerRepository.findByName(university).orElseThrow(() ->
         new PartnerNotFoundException(university)
@@ -44,7 +44,7 @@ public class PartnerController {
         return partner.getCourses();
     }
 
-    @PutMapping("/addMandatoryCourse/{university}/{code}/{name}")
+    @PutMapping("/mandatory_course/add/{university}/{code}/{name}")
     public Course addCourse(@PathVariable("university") String university,
                                           @PathVariable("code") String code,
                                           @PathVariable("name") String name) {
