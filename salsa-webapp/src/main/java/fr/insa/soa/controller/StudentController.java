@@ -30,6 +30,18 @@ public class StudentController {
         this.specialityRepository = specialityRepository;
     }
 
+    @GetMapping("/{username}")
+    public Student student(@PathVariable("username") String username) {
+        return studentRepository.findById(username).orElseThrow(() ->
+                new StudentNotFoundException(username)
+        );
+    }
+
+    @GetMapping
+    public List<Student> all() {
+        return studentRepository.findAll();
+    }
+
     @PostMapping("/login")
     public fr.insa.soa.model.entities.Account login(@RequestBody String username, @RequestBody String password) {
         return studentRepository.findByUsernameAndPassword(username, password).orElseThrow(() ->
@@ -43,7 +55,7 @@ public class StudentController {
             return studentRepository.saveAndFlush(student);
     }
 
-    @PutMapping("/add/YearEnrollment/{year}/{username}")
+    @PutMapping("/year_enrollment/add/{year}/{username}")
     public YearEnrollment addYearEnrollment(@PathVariable("username") String username, @PathVariable("year") Integer year) {
 
         Student student = studentRepository.findById(username).orElseThrow(() ->
@@ -61,19 +73,7 @@ public class StudentController {
         return yearEnrollmentRepository.saveAndFlush(yearEnrollment);
     }
 
-    @GetMapping("/{username}")
-    public Student student(@PathVariable("username") String username) {
-        return studentRepository.findById(username).orElseThrow(() ->
-                new StudentNotFoundException(username)
-        );
-    }
-
-    @GetMapping
-    public List<Student> all() {
-        return studentRepository.findAll();
-    }
-
-    @PutMapping("/add/simpleEnrollment/{university}/{username}/{year}")
+    @PutMapping("/simple_enrollment/add/{university}/{username}/{year}")
     public Enrollment addSimpleEnrollment(@PathVariable("username") String username,
                                             @PathVariable("university") String university,
                                             @PathVariable("year") Integer year) {
@@ -94,7 +94,7 @@ public class StudentController {
         return simpleEnrollmentRepository.saveAndFlush(simpleEnrollment);
     }
 
-    @PutMapping("/set/speciality/{username}/{code}")
+    @PutMapping("/speciality/add/{username}/{code}")
     public Speciality setSpeciality(@PathVariable ("username") String username,
                                           @PathVariable ("code") String code){
 
@@ -111,7 +111,7 @@ public class StudentController {
         return specialityRepository.saveAndFlush(speciality);
     }
 
-    @GetMapping("/get/speciality/{username}")
+    @GetMapping("/speciality/{username}")
     public Speciality getSpeciality(@PathVariable ("username") String username){
 
         Student student = studentRepository.findByUsername(username).orElseThrow(() ->

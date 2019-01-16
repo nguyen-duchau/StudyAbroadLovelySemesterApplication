@@ -9,7 +9,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/reportCard")
+@RequestMapping("/report_card")
 public class ReportCardController {
 
     private final ReportCardRepository reportCardRepository;
