@@ -30,14 +30,6 @@ public class StudentController {
         this.specialityRepository = specialityRepository;
     }
 
-    @PostMapping("/login")
-    public fr.insa.soa.model.entities.Account login(@RequestBody String username, @RequestBody String password) {
-        return studentRepository.findByUsernameAndPassword(username, password).orElseThrow(() ->
-                new AccountNotFoundException(username)
-        );
-    }
-
-
     @PutMapping("/add")
     public Student add(@RequestBody Student student) {
             return studentRepository.saveAndFlush(student);

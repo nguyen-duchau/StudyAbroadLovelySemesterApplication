@@ -1,0 +1,19 @@
+<form [formGroup]="createUniversityForm" (ngSubmit)="createUniversity()">
+    <h1 mat-dialog-title>Create an university</h1>
+    <div mat-dialog-content fxLayout="column" fxLayoutAlign="start stretch">
+
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="School name" name="name" formControlName="name" required>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="address" name="address" formControlName="address">
+        </mat-form-field>
+
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="primary" type="submit" cdkFocusInitial>Create</button>
+    </div>
+</form>
+

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {University} from "../salsa-model/university.model";
-import {Observable, Subject} from "rxjs";
+import {Observable, Subject, throwError} from "rxjs";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {tap} from "rxjs/operators";
 import {MatSnackBar} from "@angular/material";
@@ -24,19 +24,17 @@ export class UniversityService {
         this.httpClient.get<University[]>(
             SalsaConfig.PARTNER_URL,
         ).subscribe(
-
             (universities) => {
                 this.universities = universities;
                 this.emit();
             },
 
             (error: HttpErrorResponse) => {
-                if(error.status == 0)
+                if (error.status == 0)
                     this.snackBar.open("No Intenet connection or server side is not operational", "I got it");
                 else
                     this.snackBar.open(error.message, "Try again");
             }
-
         );
     }
 
@@ -44,22 +42,33 @@ export class UniversityService {
         this.subject.next(this.universities.slice());
     }
 
-    fetch(): Observable<University[]>  {
-        return this.httpClient.get<University[]>(
+    put(university: University): void {
+        this.httpClient.put<University>(
             SalsaConfig.PARTNER_URL,
-        ).pipe(
+            university
+        ).subscribe(
+            (university) => {
+                this.universities.push(university);
+                this.emit();
+            },
 
-            tap(
-                (universities) => {
-                    this.universities = universities;
-                    this.emit();
-                }
-            )
+            (error: HttpErrorResponse) => {
+                return this.handleError(error);
+            }
+
         );
+
     }
 
-    add(university: University) {
-        this.universities.push(university);
-        this.emit();
-    }
+    private handleError(error: HttpErrorResponse) {
+
+        if (error.status == 0)
+            this.snackBar.open("No Intenet connection or server side is not operational", "I got it");
+        else
+            this.snackBar.open(error.error.message, "Try again");
+
+        // return an observable with a user-facing error message
+        return throwError(
+            'Something bad happened; please try again later.');
+    };
 }

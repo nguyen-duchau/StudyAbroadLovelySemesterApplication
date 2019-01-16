@@ -17,7 +17,7 @@ import { InsaComponent } from './insa/insa.component';
 import {UserService} from "./salsa-service/user.service";
 import {UniversityService} from "./salsa-service/university.service";
 import {HttpClientModule} from "@angular/common/http";
-import { UniveristiesComponent } from './univeristies/univeristies.component';
+import { UniversitiesComponent } from './universities/universities.component';
 import {AdminModule} from "./admin/admin.module";
 
 @NgModule({
@@ -28,7 +28,7 @@ import {AdminModule} from "./admin/admin.module";
         AuthenticationComponent,
         StudentComponent,
         InsaComponent,
-        UniveristiesComponent
+        UniversitiesComponent
     ],
     imports: [
         BrowserModule,

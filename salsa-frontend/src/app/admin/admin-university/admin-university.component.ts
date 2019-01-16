@@ -3,12 +3,7 @@ import {University} from "../../salsa-model/university.model";
 import {Subscription} from "rxjs";
 import {MatDialog, MatTableDataSource} from "@angular/material";
 import {UniversityService} from "../../salsa-service/university.service";
-import {AdminUniversityEditComponent} from "./admin-university-edit/admin-university-edit.component";
-
-export interface DialogData {
-    animal: string;
-    name: string;
-}
+import {AdminUniversityCreateComponent} from "./admin-university-create/admin-university-create.component";
 
 @Component({
     selector: 'salsa-admin-university',
@@ -22,7 +17,7 @@ export class AdminUniversityComponent implements OnInit, OnDestroy {
 
     // data table
     dataSource: MatTableDataSource<University>;
-    displayedColumns = ['name', 'address', 'country'];
+    displayedColumns = ['name', 'address'];
 
     loading: boolean;
 
@@ -34,32 +29,31 @@ export class AdminUniversityComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+
         this.universitySubscription = this.universityService.subject.subscribe(
             (universities: University[]) => {
                 this.universities = universities;
                 this.loading = false;
+                this.dataSource = new MatTableDataSource<University>(this.universities);
+
             }
         );
         this.universityService.emit();
-        this.dataSource = new MatTableDataSource<University>(this.universities);
     }
 
     ngOnDestroy(): void {
         this.universitySubscription.unsubscribe();
     }
 
-    animal: string;
-    name: string;
-
-    openDialog(): void {
-        const dialogRef = this.dialog.open(AdminUniversityEditComponent, {
-            width: '250px',
-            data: {name: this.name, animal: this.animal}
+    openCreateDialog(): void {
+        const dialogRef = this.dialog.open(AdminUniversityCreateComponent, {
+            // width: '250px',
+            data: new University("", "")
         });
 
-        dialogRef.afterClosed().subscribe(result => {
+        dialogRef.afterClosed().subscribe(university => {
             console.log('The dialog was closed');
-            this.animal = result;
+            this.universities.push(university);
         });
     }
 

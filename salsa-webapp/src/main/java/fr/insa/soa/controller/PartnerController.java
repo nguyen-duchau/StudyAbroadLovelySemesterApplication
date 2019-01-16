@@ -3,12 +3,10 @@ package fr.insa.soa.controller;
 import fr.insa.soa.model.entities.Course;
 import fr.insa.soa.model.entities.MandatoryCourse;
 import fr.insa.soa.model.entities.Partner;
-import fr.insa.soa.model.entities.YearEnrollment;
 import fr.insa.soa.model.exception.PartnerNotFoundException;
 import fr.insa.soa.model.exception.PartnersNotFoundException;
 import fr.insa.soa.model.repository.CourseRepository;
 import fr.insa.soa.model.repository.PartnerRepository;
-import fr.insa.soa.model.repository.PartnersRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,9 +30,9 @@ public class PartnerController {
         return partnerRepository.findAll();
     }
 
-    @PutMapping("/add")
-    public Partner add(@RequestBody Partner student) {
-        return partnerRepository.saveAndFlush(student);
+    @PutMapping
+    public Partner add(@RequestBody Partner university) {
+        return partnerRepository.saveAndFlush(university);
     }
 
     @GetMapping("/getCourses/{university}")

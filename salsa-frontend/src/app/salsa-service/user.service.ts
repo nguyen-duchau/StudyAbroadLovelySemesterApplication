@@ -25,9 +25,8 @@ export class UserService {
         private router: Router,
         public snackBar: MatSnackBar
     ) {
-        // this.userSubject = new Subject<Student>();
+        this.userSubject = new Subject<Student>();
         this.callbackUrl = this.activatedRoute.snapshot.queryParams['callbackUrl'] || '/student';
-
         this.adminSubject = new Subject<boolean>();
     }
 
@@ -68,6 +67,7 @@ export class UserService {
             student_input
         ).subscribe(
             (student) => {
+                console.log(student);
                 this.user = student;
                 this.emitUser();
                 this.router.navigate([this.callbackUrl]);

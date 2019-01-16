@@ -5,11 +5,11 @@ import {MatTableDataSource} from "@angular/material";
 import {UniversityService} from "../salsa-service/university.service";
 
 @Component({
-    selector: 'salsa-univeristies',
-    templateUrl: './univeristies.component.html',
-    styleUrls: ['./univeristies.component.scss']
+    selector: 'salsa-universities',
+    templateUrl: './universities.component.html',
+    styleUrls: ['./universities.component.scss']
 })
-export class UniveristiesComponent implements OnInit {
+export class UniversitiesComponent implements OnInit {
 
 
     universities: University[];
@@ -31,10 +31,12 @@ export class UniveristiesComponent implements OnInit {
         this.universitySubscription = this.universityService.subject.subscribe(
             (universities: University[]) => {
                 this.universities = universities;
+                this.dataSource = new MatTableDataSource<University>(this.universities);
             }
         );
+
         this.universityService.emit();
-        this.dataSource = new MatTableDataSource<University>(this.universities);
+
     }
 
     ngOnDestroy(): void {

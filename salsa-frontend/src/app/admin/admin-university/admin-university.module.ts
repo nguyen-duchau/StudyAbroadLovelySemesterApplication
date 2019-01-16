@@ -1,22 +1,25 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AdminUniversityEditComponent} from "./admin-university-edit/admin-university-edit.component";
-import {FormsModule} from "@angular/forms";
+import {AdminUniversityCreateComponent} from "./admin-university-create/admin-university-create.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppMaterialModule} from "../../app-material.module";
 
 @NgModule({
     declarations: [
-        AdminUniversityEditComponent
+        AdminUniversityCreateComponent
     ],
     imports: [
         FormsModule,
         AppMaterialModule,
-        CommonModule
+        CommonModule,
+
+        FormsModule,
+        ReactiveFormsModule
     ],
     exports: [
-        AdminUniversityEditComponent
+        AdminUniversityCreateComponent
     ],
-    entryComponents: [AdminUniversityEditComponent]
+    entryComponents: [AdminUniversityCreateComponent]
 })
 export class AdminUniversityModule {
 }

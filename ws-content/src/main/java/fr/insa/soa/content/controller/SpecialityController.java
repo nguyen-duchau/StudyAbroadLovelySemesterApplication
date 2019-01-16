@@ -8,11 +8,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/speciality")
-public class SpecialityServiceController {
+public class SpecialityController {
 
     private final SpecialityRepository specialityRepository;
 
-    public SpecialityServiceController(SpecialityRepository specialityRepository) {
+    public SpecialityController(SpecialityRepository specialityRepository) {
         this.specialityRepository = specialityRepository;
     }
 

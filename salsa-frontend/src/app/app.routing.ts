@@ -4,8 +4,8 @@ import {AdminComponent} from './admin/admin.component';
 import {AuthenticationComponent} from "./authentication/authentication.component";
 import {StudentComponent} from "./student/student.component";
 import {InsaComponent} from "./insa/insa.component";
+import {UniversitiesComponent} from "./universities/universities.component";
 import {AuthGuardService} from "./salsa-policy/auth-guard.service";
-import {UniveristiesComponent} from "./univeristies/univeristies.component";
 
 const routes: Routes = [
     {
@@ -32,7 +32,7 @@ const routes: Routes = [
     },
     {
         path: 'universities',
-        component: UniveristiesComponent
+        component: UniversitiesComponent
     }
 ];
 

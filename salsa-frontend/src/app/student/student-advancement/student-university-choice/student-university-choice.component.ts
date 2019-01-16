@@ -17,7 +17,7 @@ export class StudentUniversityChoiceComponent implements OnInit, OnDestroy {
 
     // data table
     dataSource : MatTableDataSource<University>;
-    displayedColumns = ['select','name', 'address', 'country'];
+    displayedColumns = ['select','name', 'address'];
     selection = new SelectionModel<University>(true, []);
 
     constructor(
@@ -28,10 +28,11 @@ export class StudentUniversityChoiceComponent implements OnInit, OnDestroy {
         this.universitySubscription = this.universityService.subject.subscribe(
             (universities: University[]) => {
                 this.universities = universities;
+                this.dataSource = new MatTableDataSource<University>(this.universities);
             }
         );
         this.universityService.emit();
-        this.dataSource = new MatTableDataSource<University>(this.universities);
+
     }
 
     applyFilter(filterValue: string) {
