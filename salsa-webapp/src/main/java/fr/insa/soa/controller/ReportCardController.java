@@ -18,15 +18,14 @@ public class ReportCardController {
         this.reportCardRepository = reportCardRepository;
     }
 
-
-    @PutMapping("/add")
-    public ReportCard add(@RequestBody ReportCard reportCard) {
-        return reportCardRepository.saveAndFlush(reportCard);
+    @GetMapping
+    public List<ReportCard> getAll() {
+        return reportCardRepository.findAll();
     }
 
-    @GetMapping
-    public List<ReportCard> all() {
-        return reportCardRepository.findAll();
+    @PutMapping
+    public ReportCard add(@RequestBody ReportCard reportCard) {
+        return reportCardRepository.saveAndFlush(reportCard);
     }
 
     @GetMapping("/{id}")

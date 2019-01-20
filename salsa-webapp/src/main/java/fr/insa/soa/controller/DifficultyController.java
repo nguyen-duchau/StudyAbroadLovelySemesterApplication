@@ -30,7 +30,7 @@ public class DifficultyController {
         );
     }
 
-    @PutMapping("/add")
+    @PutMapping
     public Difficulty add(@RequestBody Difficulty difficulty) {
         return difficultyRepository.save(difficulty);
     }

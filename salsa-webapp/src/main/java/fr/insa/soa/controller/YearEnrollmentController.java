@@ -17,14 +17,13 @@ public class YearEnrollmentController {
         this.yearEnrollmentRepository=yearEnrollmentRepository;
     }
 
-    @GetMapping()
+    @GetMapping
     public List<YearEnrollment> allYearEnrollment() {
         return yearEnrollmentRepository.findAll();
     }
 
-    @PutMapping("/add")
+    @PutMapping
     public YearEnrollment add(@RequestBody YearEnrollment yearEnrollment) {
         return yearEnrollmentRepository.saveAndFlush(yearEnrollment);
     }
-
 }

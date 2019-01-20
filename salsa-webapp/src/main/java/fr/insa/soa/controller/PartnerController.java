@@ -4,7 +4,6 @@ import fr.insa.soa.model.entities.Course;
 import fr.insa.soa.model.entities.MandatoryCourse;
 import fr.insa.soa.model.entities.Partner;
 import fr.insa.soa.model.exception.PartnerNotFoundException;
-import fr.insa.soa.model.exception.PartnersNotFoundException;
 import fr.insa.soa.model.repository.CourseRepository;
 import fr.insa.soa.model.repository.PartnerRepository;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +25,7 @@ public class PartnerController {
 
 
     @GetMapping
-    public List<Partner> all() {
+    public List<Partner> getAll() {
         return partnerRepository.findAll();
     }
 
@@ -44,13 +43,13 @@ public class PartnerController {
         return partner.getCourses();
     }
 
-    @PutMapping("/mandatory_course/add/{university}/{code}/{name}")
+    @PutMapping("/mandatory_course/{university}/{code}/{name}")
     public Course addCourse(@PathVariable("university") String university,
                                           @PathVariable("code") String code,
                                           @PathVariable("name") String name) {
 
         Partner partner = partnerRepository.findByName(university).orElseThrow(() ->
-                new PartnersNotFoundException(university)
+                new PartnerNotFoundException(university)
         );
 
         for (Course course: partner.getCourses()){

@@ -19,27 +19,26 @@ public class SpecialityController {
         this.specialityRepository = specialityRepository;
     }
 
-    @PutMapping("/add")
-    public Speciality add(@RequestBody Speciality speciality) {
-        return specialityRepository.saveAndFlush(speciality);
-    }
-
-    @PutMapping("/add/{code}/{department}")
-    public Speciality add_with_parameters(@PathVariable("code") String code, @PathVariable("department") String department){
-        Speciality speciality= new Speciality(code,department);
-        return specialityRepository.saveAndFlush(speciality);
-    }
-
     @GetMapping
-    public List<Speciality> all() {
+    public List<Speciality> getAll() {
         return specialityRepository.findAll();
     }
 
     @GetMapping("/{code}")
-    public Speciality reportCard(@PathVariable("code") String code) {
+    public Speciality get(@PathVariable("code") String code) {
         return specialityRepository.findByCode(code).orElseThrow(() ->
                 new SpecialityNotFoundException(code)
         );
     }
 
+    @PutMapping
+    public Speciality add(@RequestBody Speciality speciality) {
+        return specialityRepository.saveAndFlush(speciality);
+    }
+
+    @PutMapping("/{code}/{department}")
+    public Speciality add_with_parameters(@PathVariable("code") String code, @PathVariable("department") String department){
+        Speciality speciality= new Speciality(code,department);
+        return specialityRepository.saveAndFlush(speciality);
+    }
 }

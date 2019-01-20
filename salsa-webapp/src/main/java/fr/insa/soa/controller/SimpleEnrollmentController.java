@@ -22,7 +22,7 @@ public class SimpleEnrollmentController {
     }
 
     @GetMapping
-    public List<SimpleEnrollment> all() {
+    public List<SimpleEnrollment> getAll() {
         return simpleEnrollmentRepository.findAll();
     }
 }

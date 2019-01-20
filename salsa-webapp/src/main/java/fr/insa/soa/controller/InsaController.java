@@ -1,8 +1,8 @@
 package fr.insa.soa.controller;
 
-import fr.insa.soa.model.entities.University;
-import fr.insa.soa.model.repository.UniversityRepository;
-import fr.insa.soa.model.exception.UniversityNotFoundException;
+import fr.insa.soa.model.entities.Partner;
+import fr.insa.soa.model.repository.PartnerRepository;
+import fr.insa.soa.model.exception.PartnerNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,30 +12,25 @@ import java.util.List;
 @RequestMapping("/insa")
 public class InsaController {
 
-    private final UniversityRepository universityRepository;
+    private final PartnerRepository partnerRepository;
 
-    public InsaController(UniversityRepository universityRepository){
-        this.universityRepository = universityRepository;
+    public InsaController(PartnerRepository partnerRepository){
+        this.partnerRepository= partnerRepository;
     }
 
-    @PutMapping("/add")
-    public University add(@RequestBody University university) {
-        return universityRepository.saveAndFlush(university);
+    @GetMapping("/partner")
+    public List<Partner> getAllPartner() {return partnerRepository.findAll();
     }
 
-    @GetMapping("/{name}")
-    public University findName(@PathVariable("name") String name) {
-        return universityRepository.findByName(name).orElseThrow(() ->
-                new UniversityNotFoundException(name)
+    @GetMapping("/partner/{name}")
+    public Partner getPartner(@PathVariable("name") String name) {
+        return partnerRepository.findByName(name).orElseThrow(() ->
+                new PartnerNotFoundException(name)
         );
     }
 
-    @GetMapping
-    public List<University> all() {return universityRepository.findAll();
-    }
-
-    @GetMapping("/success")
-    public String success() {
-        return "Yo, this one is gooood";
+    @PutMapping("/partner")
+    public Partner add(@RequestBody Partner partner) {
+        return partnerRepository.saveAndFlush(partner);
     }
 }

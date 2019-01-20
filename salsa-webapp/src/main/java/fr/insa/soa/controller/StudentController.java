@@ -30,12 +30,23 @@ public class StudentController {
         this.specialityRepository = specialityRepository;
     }
 
-    @PutMapping("/add")
+    @GetMapping
+    public List<Student> getAll() {
+        return studentRepository.findAll();
+    }
+
+    @GetMapping("/{username}")
+    public Student get(@PathVariable("username") String username) {
+        return studentRepository.findById(username).orElseThrow(() ->
+                new StudentNotFoundException(username)
+        );
+    }
+    @PutMapping
     public Student add(@RequestBody Student student) {
             return studentRepository.saveAndFlush(student);
     }
 
-    @PutMapping("/year_enrollment/add/{year}/{username}")
+    @PutMapping("/year_enrollment/{year}/{username}")
     public YearEnrollment addYearEnrollment(@PathVariable("username") String username, @PathVariable("year") Integer year) {
 
         Student student = studentRepository.findById(username).orElseThrow(() ->
@@ -53,19 +64,7 @@ public class StudentController {
         return yearEnrollmentRepository.saveAndFlush(yearEnrollment);
     }
 
-    @GetMapping("/{username}")
-    public Student student(@PathVariable("username") String username) {
-        return studentRepository.findById(username).orElseThrow(() ->
-                new StudentNotFoundException(username)
-        );
-    }
-
-    @GetMapping
-    public List<Student> all() {
-        return studentRepository.findAll();
-    }
-
-    @PutMapping("/simpleEnrollment/{university}/{username}/{year}")
+    @PutMapping("/simple_enrollment/{university}/{username}/{year}")
     public Enrollment addSimpleEnrollment(@PathVariable("username") String username,
                                             @PathVariable("university") String university,
                                             @PathVariable("year") Integer year) {
@@ -86,7 +85,7 @@ public class StudentController {
         return simpleEnrollmentRepository.saveAndFlush(simpleEnrollment);
     }
 
-    @PutMapping("/speciality/add/{username}/{code}")
+    @PutMapping("/speciality/{username}/{code}")
     public Speciality setSpeciality(@PathVariable ("username") String username,
                                           @PathVariable ("code") String code){
 
@@ -112,5 +111,4 @@ public class StudentController {
 
         return student.getSpeciality();
     }
-
 }

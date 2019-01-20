@@ -18,22 +18,20 @@ public class ScoreController {
         this.scoreRepository = scoreRepository;
     }
 
-    @PutMapping("/add")
-    public Score add(@RequestBody Score score) {
-        return scoreRepository.saveAndFlush(score);
-    }
-
     @GetMapping
-    public List<Score> all() {
+    public List<Score> getAll() {
         return scoreRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Score reportCard(@PathVariable("id") Long id) {
+    public Score get(@PathVariable("id") Long id) {
         return scoreRepository.findById(id).orElseThrow(() ->
                 new ScoreNotFoundException(id)
         );
     }
 
-
+    @PutMapping
+    public Score add(@RequestBody Score score) {
+        return scoreRepository.saveAndFlush(score);
+    }
 }
